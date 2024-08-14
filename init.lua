@@ -1,11 +1,22 @@
 vim.g.mapleader = " "
 
 require("lazy-init")
-require("style")
+require("colors")
 require("keymaps")
+require("lsp-config")
+require("neotree-config")
 
 vim.opt.ignorecase = true
 vim.opt.hlsearch = true
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+
+vim.opt.expandtab = true
+vim.api.nvim_set_option("clipboard","unnamed")
 
 vim.g.highlightedyank_highlight_duration = 100
 
@@ -17,3 +28,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank {higroup = 'IncSearch', timeout = 100}
     end
 })
+
+
