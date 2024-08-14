@@ -299,5 +299,3 @@ require("neo-tree").setup({
 		width = "40",
 	},
 })
-
-vim.cmd(":Neotree")

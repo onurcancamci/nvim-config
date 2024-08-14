@@ -51,4 +51,5 @@ return {
 			})
 		end,
 	},
+	{ "nvim-treesitter/playground" },
 }

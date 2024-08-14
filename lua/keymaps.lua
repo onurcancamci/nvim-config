@@ -13,7 +13,11 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
 vim.keymap.set("n", "<C-f>", "<C-u>zz", { noremap = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 
+-- if pressed leader-p it will paste onto current selection but will keep the clipboard
 vim.keymap.set("x", "<leader>p", '"_dP', { noremap = false })
+
+-- start with leader-d and it will not keep deleted contents
+vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { noremap = false })
 
 -- Shift Option O => make a new line up
 vim.keymap.set("n", "Ø", "O<Esc>j", { noremap = false })
@@ -28,6 +32,7 @@ vim.keymap.set("n", "<leader>ps", function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 vim.keymap.set("n", "<leader>pb", builtin.buffers, {})
+vim.keymap.set("n", "<leader>pd", builtin.diagnostics, {})
 vim.keymap.set("n", "<leader>b", builtin.buffers, {})
 
 vim.keymap.set("n", "<C-p>", builtin.git_files, {})
@@ -63,3 +68,23 @@ vim.keymap.set("n", "<M-down>", "<C-w>j")
 
 vim.keymap.set("n", "<leader>m", ":bn<CR>")
 vim.keymap.set("n", "<leader>n", ":bp<CR>")
+
+-- move lines in visual mode by shift up/down
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv")
+
+-- center after search
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- center after G
+vim.keymap.set({ "n", "v" }, "G", "Gzz")
+
+vim.keymap.set("n", "<leader>tsc", "<cmd>LspRestart<cr>")
+
+-- regular cmd keys
+vim.keymap.set("n", "<D-s>", ":w<CR>", { noremap = false })
+-- vim.keymap.set("n", "<D-z>", "u", { noremap = false })
+vim.keymap.set("n", "<C-z>", "u")

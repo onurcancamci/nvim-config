@@ -9,4 +9,5 @@ return {
 		"stevearc/conform.nvim",
 		opts = {},
 	},
+	{ "hrsh7th/cmp-calc" },
 }
