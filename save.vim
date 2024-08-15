@@ -1,6 +1,7 @@
 let SessionLoad = 1
 let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 let v:this_session=expand("<sfile>:p")
+let TabbyTabNames = "[]"
 silent only
 silent tabonly
 cd ~/.config/nvim
@@ -17,7 +18,7 @@ badd +34 lua/keymaps.lua
 badd +6 term://~/.config/nvim//55523:/bin/zsh
 badd +28 lua/plugins/tabline.lua
 badd +26 lua/lsp-config.lua
-badd +114 lua/util-config.lua
+badd +161 lua/util-config.lua
 badd +1 oil:///Users/onurcan/.config/nvim/
 badd +5 init-backup.vim
 badd +30 init.lua
@@ -25,11 +26,11 @@ badd +47 lua/plugins/utils.lua
 badd +1 save.vim
 badd +9 lua/plugins/oil.lua
 badd +12 lua/plugins/telescope.lua
-badd +44 lua/plugins/style.lua
+badd +82 lua/plugins/style.lua
 argglobal
 %argdel
 $argadd oil:///Users/onurcan/.config/nvim/
-edit lua/util-config.lua
+edit lua/plugins/style.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -49,18 +50,18 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 113 + 114) / 228)
 exe 'vert 2resize ' . ((&columns * 114 + 114) / 228)
 argglobal
-balt lua/keymaps.lua
+balt lua/util-config.lua
 let s:cpo_save=&cpo
 set cpo&vim
 nnoremap <buffer>  vca <Cmd>lua vim.lsp.buf.code_action()
 nnoremap <buffer> K <Cmd>lua vim.lsp.buf.hover()
-nnoremap <buffer> gl <Cmd>lua vim.diagnostic.open_float()
-nnoremap <buffer> gs <Cmd>lua vim.lsp.buf.signature_help()
-nnoremap <buffer> gr <Cmd>Telescope lsp_references
-nnoremap <buffer> go <Cmd>lua vim.lsp.buf.type_definition()
-nnoremap <buffer> gi <Cmd>lua vim.lsp.buf.implementation()
-nnoremap <buffer> gD <Cmd>lua vim.lsp.buf.declaration()
 nnoremap <buffer> gd <Cmd>lua vim.lsp.buf.definition()
+nnoremap <buffer> gD <Cmd>lua vim.lsp.buf.declaration()
+nnoremap <buffer> gi <Cmd>lua vim.lsp.buf.implementation()
+nnoremap <buffer> go <Cmd>lua vim.lsp.buf.type_definition()
+nnoremap <buffer> gr <Cmd>Telescope lsp_references
+nnoremap <buffer> gs <Cmd>lua vim.lsp.buf.signature_help()
+nnoremap <buffer> gl <Cmd>lua vim.diagnostic.open_float()
 nnoremap <buffer> <F2> <Cmd>lua vim.lsp.buf.rename()
 let &cpo=s:cpo_save
 unlet s:cpo_save
@@ -166,7 +167,7 @@ setlocal spellfile=
 setlocal spelllang=en
 setlocal spelloptions=noplainbuffer
 setlocal statuscolumn=
-setlocal statusline=%#lualine_a_command#\ COMMAND\ %#lualine_transitional_lualine_a_command_to_lualine_b_diagnostics_hint_command#î‚°%#lualine_b_diagnostics_hint_command#\ ó°Œ¶\ 2\ %#lualine_transitional_lualine_b_diagnostics_hint_command_to_lualine_c_normal#î‚°%<%#lualine_c_normal#\ util-config.lua\ %#lualine_c_normal#%=%#lualine_c_normal#\ ó°€±\ 1\ 2\ %#lualine_c_normal#\ %=\ %#lualine_transitional_lualine_y_filetype_DevIconLua_command_to_lualine_c_normal#î‚²%#lualine_y_filetype_DevIconLua_command#\ î˜ \ %#lualine_b_command#lua\ %#lualine_transitional_lualine_a_command_to_lualine_b_command#î‚²%#lualine_a_command#\ î‚ \ main\ 
+setlocal statusline=%#lualine_a_command#\ COMMAND\ %#lualine_transitional_lualine_a_command_to_lualine_b_diagnostics_hint_command#î‚°%#lualine_b_diagnostics_hint_command#\ ó°Œ¶\ 5\ %#lualine_transitional_lualine_b_diagnostics_hint_command_to_lualine_c_normal#î‚°%<%#lualine_c_normal#\ style.lua\ %#lualine_c_normal#%=%#lualine_c_normal#\ ó°€±\ [1]\ 2\ %#lualine_c_normal#\ %=\ %#lualine_transitional_lualine_y_filetype_DevIconLua_command_to_lualine_c_normal#î‚²%#lualine_y_filetype_DevIconLua_command#\ î˜ \ %#lualine_b_command#lua\ %#lualine_transitional_lualine_a_command_to_lualine_b_command#î‚²%#lualine_a_command#\ î‚ \ main\ 
 setlocal suffixesadd=.lua
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -195,12 +196,12 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 161 - ((53 * winheight(0) + 30) / 61)
+let s:l = 82 - ((52 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 161
-normal! 07|
+keepjumps 82
+normal! 033|
 wincmd w
 argglobal
 if bufexists(fnamemodify("lua/plugins/utils.lua", ":p")) | buffer lua/plugins/utils.lua | else | edit lua/plugins/utils.lua | endif
@@ -324,7 +325,7 @@ setlocal spellfile=
 setlocal spelllang=en
 setlocal spelloptions=noplainbuffer
 setlocal statuscolumn=
-setlocal statusline=%<%#lualine_c_inactive#\ utils.lua\ %#lualine_c_inactive#%=%#lualine_c_inactive#\ \ \ 2:29\ 
+setlocal statusline=%<%#lualine_c_inactive#\ utils.lua\ %#lualine_c_inactive#%=%#lualine_c_inactive#\ ó°€±\ 1\ [2]\ %#lualine_c_inactive#\ %=\ 
 setlocal suffixesadd=.lua
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -353,11 +354,11 @@ setlocal nowrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 30) / 61)
+let s:l = 27 - ((14 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
+keepjumps 27
 normal! 030|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 113 + 114) / 228)

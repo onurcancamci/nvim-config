@@ -64,6 +64,24 @@ return {
 						},
 					},
 				},
+				inactive_sections = {
+					lualine_a = {},
+					lualine_b = {},
+					lualine_c = { "filename" },
+					lualine_x = {
+						{
+							"harpoon2",
+							icon = "󰀱",
+							indicators = { "1", "2", "3", "4", "5" },
+							active_indicators = { "[1]", "[2]", "[3]", "[4]", "[5]" },
+							_separator = " ",
+							no_harpoon = "Harpoon not loaded",
+						},
+						{ "%=" },
+					},
+					lualine_y = { "filetype" },
+					lualine_z = {},
+				},
 
 				-- options = { theme = "ayu" },
 			})

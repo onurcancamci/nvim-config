@@ -2,7 +2,7 @@ local harpoon = require("harpoon")
 
 vim.keymap.set("n", "S", "s", { noremap = true })
 
-vim.keymap.set("n", "s", ":w<CR>", { noremap = false })
+vim.keymap.set("n", "s", ":w|lua vim.defer_fn( function()vim.cmd('echom \"\"') end, 0)<CR>", { noremap = false })
 
 vim.keymap.set("n", "<leader><space>", ":noh<CR>", { noremap = true })
 
