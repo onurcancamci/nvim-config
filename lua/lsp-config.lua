@@ -9,11 +9,11 @@ local lsp_attach = function(client, bufnr)
 	vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 	vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
 	vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-	vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+	-- vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 	vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 	vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-	vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-	vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+	vim.keymap.set("n", "<leader>vca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 	vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	vim.keymap.set("n", "[d", function()
 		vim.diagnostic.jump({ count = -1, float = true })
@@ -74,9 +74,9 @@ local kind_icons = {
 
 cmp.setup({
 	sources = {
-
 		{ name = "calc" },
 		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
 	},
 	snippet = {
 		expand = function(args)
@@ -88,7 +88,23 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<C-k>"] = cmp.mapping({
+			i = function()
+				if cmp.visible() then
+					cmp.abort()
+				else
+					cmp.complete()
+				end
+			end,
+			c = function()
+				if cmp.visible() then
+					cmp.close()
+				else
+					cmp.complete()
+				end
+			end,
+		}),
 	}),
 	window = {
 		-- completion = cmp.config.window.bordered(),
@@ -131,6 +147,9 @@ require("conform").setup({
 		rust = { "rustfmt", lsp_format = "fallback" },
 		-- Conform will run the first available formatter
 		javascript = { "prettierd", "prettier", stop_after_first = true },
+		typescript = { "prettierd", "prettier", stop_after_first = true },
+		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+		tsx = { "prettierd", "prettier", stop_after_first = true },
 	},
 })
 
@@ -147,7 +166,47 @@ vim.diagnostic.config({
 	virtual_text = {
 		severity = { vim.diagnostic.severity.ERROR },
 	},
+	signs = {
+		severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
+	},
+	-- underline = {
+	-- 	severity = { vim.diagnostic.severity.ERROR },
+	-- },
 })
+
+vim.g.diagnostics_visible = true
+
+function _G.toggle_diagnostics()
+	if vim.g.diagnostics_visible then
+		vim.g.diagnostics_visible = false
+		vim.diagnostic.config({
+			virtual_text = false,
+			signs = {
+				severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
+			},
+			-- underline = {
+			-- 	severity = { vim.diagnostic.severity.ERROR },
+			-- },
+		})
+		print("Diagnostics are hidden")
+	else
+		vim.g.diagnostics_visible = true
+		vim.diagnostic.config({
+			virtual_text = {
+				severity = { vim.diagnostic.severity.ERROR },
+			},
+			signs = {
+				severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
+			},
+			-- underline = {
+			-- 	severity = { vim.diagnostic.severity.ERROR },
+			-- },
+		})
+		print("Diagnostics are visible")
+	end
+end
+
+vim.keymap.set("n", "<leader>hd", ":call v:lua.toggle_diagnostics()<CR>", { silent = true, noremap = true })
 
 require("nvim-ts-autotag").setup({
 	opts = {

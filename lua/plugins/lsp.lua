@@ -10,4 +10,5 @@ return {
 		opts = {},
 	},
 	{ "hrsh7th/cmp-calc" },
+	{ "saadparwaiz1/cmp_luasnip" },
 }

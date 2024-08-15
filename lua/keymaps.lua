@@ -7,7 +7,7 @@ vim.keymap.set("n", "s", ":w<CR>", { noremap = false })
 
 vim.keymap.set("n", "<leader><space>", ":noh<CR>", { noremap = true })
 
-vim.keymap.set("n", "<leader>s", "ysiw", { noremap = false })
+-- vim.keymap.set("n", "<leader>s", "ysiw", { noremap = false })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
 vim.keymap.set("n", "<C-f>", "<C-u>zz", { noremap = true })
@@ -18,6 +18,7 @@ vim.keymap.set("x", "<leader>p", '"_dP', { noremap = false })
 
 -- start with leader-d and it will not keep deleted contents
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { noremap = false })
+vim.keymap.set({ "n", "v" }, "<leader>c", '"_c', { noremap = false })
 
 -- Shift Option O => make a new line up
 vim.keymap.set("n", "Ø", "O<Esc>j", { noremap = false })
@@ -27,15 +28,27 @@ local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
 vim.keymap.set("n", ";", builtin.find_files, {})
-vim.keymap.set("n", "<leader>pe", vim.cmd.Ex, {})
-vim.keymap.set("n", "<leader>ps", function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+-- vim.keymap.set("n", "<leader>pe", "<cmd>e .<CR>", {})
+
+-- vim.keymap.set("n", "<leader>pe", function()
+-- 	require("oil").open(vim.fn.expand("%:p:h"))
+-- end)
+vim.keymap.set("n", "<leader>pE", function()
+	vim.cmd("vsplit | wincmd h")
+	require("oil").open()
+	vim.cmd("vertical resize 40")
+	vim.cmd("set wfw")
 end)
+vim.keymap.set("n", "<leader>pe", "<cmd>Oil --float .<CR>", {})
+vim.keymap.set("n", "<leader>pg", builtin.live_grep, {})
+-- vim.keymap.set("n", "<leader>ps", function()
+-- 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+-- end)
 vim.keymap.set("n", "<leader>pb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>pd", builtin.diagnostics, {})
-vim.keymap.set("n", "<leader>b", builtin.buffers, {})
+vim.keymap.set("n", "<leader>bw", "40<C-w>|:set wfw<CR>")
 
-vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+-- vim.keymap.set("n", "<C-p>", builtin.git_files, {})
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
@@ -59,7 +72,7 @@ vim.keymap.set("n", "<leader>5", function()
 	hui.nav_file(5)
 end)
 
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+-- vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 vim.keymap.set("n", "<M-left>", "<C-w>h")
 vim.keymap.set("n", "<M-right>", "<C-w>l")
@@ -82,9 +95,31 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- center after G
 vim.keymap.set({ "n", "v" }, "G", "Gzz")
 
-vim.keymap.set("n", "<leader>tsc", "<cmd>LspRestart<cr>")
-
 -- regular cmd keys
 vim.keymap.set("n", "<D-s>", ":w<CR>", { noremap = false })
 -- vim.keymap.set("n", "<D-z>", "u", { noremap = false })
 vim.keymap.set("n", "<C-z>", "u")
+
+vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "<leader>f", function()
+	require("conform").format({ async = true })
+end)
+
+vim.keymap.set("n", "<leader>S", ":mksession! save.vim<CR>:wall|qa!<CR>")
+
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+vim.keymap.set("n", "J", "mzJ`z")
+-- vim.keymap.set("n", "<leader>M", ":delm a-z<CR>", { silent = true })
+
+vim.keymap.set("n", "<leader>ta", ":$tabnew<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>to", ":tabonly<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", { noremap = true })
+-- move current tab to previous position
+vim.keymap.set("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true })
+-- move current tab to next position
+vim.keymap.set("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
+
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { noremap = true })

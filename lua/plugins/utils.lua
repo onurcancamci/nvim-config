@@ -7,17 +7,25 @@ return {
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
-		-- use opts = {} for passing setup options
-		-- this is equalent to setup({}) function
 	},
-	{ "windwp/nvim-ts-autotag" },
-	--{
-	--'sudormrfbin/cheatsheet.nvim',
+	-- { "windwp/nvim-ts-autotag" },
+	{ "onurcancamci/nvim-ts-autotag" },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+	},
+	{ "chentoast/marks.nvim" },
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
 
-	--dependencies = {
-	-- {'nvim-telescope/telescope.nvim'},
-	--{'nvim-lua/popup.nvim'},
-	--{'nvim-lua/plenary.nvim'},
-	--}
-	--}
+			-- Only one of these is needed, not both.
+			"nvim-telescope/telescope.nvim", -- optional
+			"ibhagwan/fzf-lua", -- optional
+		},
+		config = true,
+	},
 }

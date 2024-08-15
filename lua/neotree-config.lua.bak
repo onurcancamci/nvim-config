@@ -207,8 +207,9 @@ local function neotree_zR(state)
 end
 
 require("neo-tree").setup({
-	enable_diagnostics = false,
-	close_if_last_window = true,
+	enable_diagnostics = true,
+	close_if_last_window = false,
+	auto_clean_after_session_restore = true,
 	filesystem = {
 		window = {
 			mappings = {
@@ -271,8 +272,19 @@ require("neo-tree").setup({
 	},
 	default_component_configs = {
 		git_status = {
+			-- symbols = {
+			-- 	untracked = "",
+			-- },
 			symbols = {
-				untracked = "",
+				added = "",
+				deleted = "",
+				modified = "",
+				renamed = "",
+				untracked = "",
+				ignored = "",
+				unstaged = "",
+				staged = "",
+				conflict = "",
 			},
 		},
 		indent = {
@@ -281,6 +293,20 @@ require("neo-tree").setup({
 			-- expander_expanded = "",
 			expander_collapsed = "",
 			expander_expanded = "",
+		},
+		diagnostics = {
+			symbols = {
+				hint = "",
+				info = "",
+				warn = "W",
+				error = "E",
+			},
+			highlights = {
+				hint = "DiagnosticSignHint",
+				info = "DiagnosticSignInfo",
+				warn = "DiagnosticSignWarn",
+				error = "DiagnosticSignError",
+			},
 		},
 	},
 	nesting_rules = {
@@ -299,3 +325,75 @@ require("neo-tree").setup({
 		width = "40",
 	},
 })
+
+local neo_is_open = function()
+	for _, buf_i in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_get_option(buf_i, "filetype") == "neo-tree" and next(vim.fn.win_findbuf(buf_i)) then
+			return true
+		end
+	end
+end
+
+local neo_get_state = function()
+	if not neo_is_open() then
+		return
+	end
+	local manager = require("neo-tree.sources.manager")
+	local renderer = require("neo-tree.ui.renderer")
+
+	local state = manager.get_state("filesystem")
+	local expanded_nodes = renderer.get_expanded_nodes(state.tree)
+	return { path = state.path, expanded_nodes = expanded_nodes, show_hidden = state.filtered_items.visible }
+end
+
+local neo_set_state = function(data)
+	local command = require("neo-tree.command")
+	local manager = require("neo-tree.sources.manager")
+	local state = manager.get_state("filesystem")
+
+	command.execute({
+		action = "show",
+		dir = data["path"],
+	})
+	state.filtered_items.visible = data["show_hidden"]
+	state.force_open_folders = data["expanded_nodes"]
+end
+
+-- require("possession").setup({
+-- 	autosave = {
+-- 		current = false,
+-- 	},
+-- 	commands = {
+-- 		save = "SSave",
+-- 		load = "SLoad",
+-- 		rename = "SRename",
+-- 		close = "SClose",
+-- 		delete = "SDelete",
+-- 		show = "SShow",
+-- 		list = "SList",
+-- 		migrate = "SMigrate",
+-- 	},
+-- 	-- hooks = {
+-- 	-- 	before_save = function(name)
+-- 	-- 		local res = {}
+-- 	-- 		local neo_state = neo_get_state()
+-- 	-- 		if neo_state ~= nil then
+-- 	-- 			res["neo_tree"] = neo_state
+-- 	-- 		end
+-- 	-- 		return res
+-- 	-- 	end,
+-- 	-- 	after_save = function(name, user_data, aborted) end,
+-- 	-- 	before_load = function(name, user_data)
+-- 	-- 		return user_data
+-- 	-- 	end,
+-- 	-- 	after_load = function(name, user_data)
+-- 	-- 		if user_data["neo_tree"] ~= nil then
+-- 	-- 			neo_set_state(user_data["neo_tree"])
+-- 	-- 		end
+-- 	-- 	end,
+-- 	-- },
+-- 	plugins = {
+-- 		delete_hidden_buffers = false, -- For *bufferline*
+-- 		neo_tree = true,
+-- 	},
+-- })
