@@ -3,7 +3,26 @@ return {
 		"stevearc/oil.nvim",
 		opts = {},
 		-- Optional dependencies
-		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		dependencies = {
+			{
+				"echasnovski/mini.icons",
+				opts = {},
+				config = function()
+					require("mini.icons").setup({
+						directory = {
+							dist = { hl = "MiniIconsRed" },
+						},
+						file = {
+							["index.ts"] = { hl = "MiniIconsPurple" },
+						},
+						extension = {
+							["page.tsx"] = { hl = "MiniIconsOrange" },
+							["util.ts"] = { hl = "MiniIconsGreen" },
+						},
+					})
+				end,
+			},
+		},
 		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 		config = function()
 			require("oil").setup({

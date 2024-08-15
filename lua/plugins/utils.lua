@@ -1,5 +1,20 @@
 return {
-	{ "ThePrimeagen/harpoon" },
+	{ "nvim-lua/plenary.nvim" },
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+
+		config = function()
+			require("harpoon").setup({
+				-- menu = {
+				-- 	width = 120,
+				-- 	height = 20,
+				-- },
+				-- tabline = false,
+			})
+		end,
+	},
 	{ "mbbill/undotree" },
 	{ "tpope/vim-fugitive" },
 	{ "terrortylor/nvim-comment" },
@@ -27,5 +42,35 @@ return {
 			"ibhagwan/fzf-lua", -- optional
 		},
 		config = true,
+	},
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			require("notify").setup({
+				stages = "static",
+			})
+		end,
+	},
+	{
+		"princejoogie/dir-telescope.nvim",
+		-- telescope.nvim is a required dependency
+		requires = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("dir-telescope").setup({
+				-- these are the default options set
+				hidden = true,
+				no_ignore = false,
+				show_preview = true,
+			})
+		end,
+	},
+	{
+		"letieu/harpoon-lualine",
+		dependencies = {
+			{
+				"ThePrimeagen/harpoon",
+				branch = "harpoon2",
+			},
+		},
 	},
 }

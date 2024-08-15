@@ -1,5 +1,4 @@
-local hmark = require("harpoon.mark")
-local hui = require("harpoon.ui")
+local harpoon = require("harpoon")
 
 vim.keymap.set("n", "S", "s", { noremap = true })
 
@@ -28,7 +27,6 @@ local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
 vim.keymap.set("n", ";", builtin.find_files, {})
--- vim.keymap.set("n", "<leader>pe", "<cmd>e .<CR>", {})
 
 -- vim.keymap.set("n", "<leader>pe", function()
 -- 	require("oil").open(vim.fn.expand("%:p:h"))
@@ -41,35 +39,57 @@ vim.keymap.set("n", "<leader>pE", function()
 end)
 vim.keymap.set("n", "<leader>pe", "<cmd>Oil --float .<CR>", {})
 vim.keymap.set("n", "<leader>pg", builtin.live_grep, {})
--- vim.keymap.set("n", "<leader>ps", function()
--- 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
--- end)
 vim.keymap.set("n", "<leader>pb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>pd", builtin.diagnostics, {})
+vim.keymap.set("n", "<leader>pF", "<cmd>Telescope dir find_files<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>pm", "<cmd>Telescope marks mark_type=all<CR>", {})
 vim.keymap.set("n", "<leader>bw", "40<C-w>|:set wfw<CR>")
 
 -- vim.keymap.set("n", "<C-p>", builtin.git_files, {})
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
-vim.keymap.set("n", "<leader>a", hmark.add_file)
-vim.keymap.set("n", "<leader>r", hmark.rm_file)
-vim.keymap.set("n", "<leader>e", hui.toggle_quick_menu)
+vim.keymap.set("n", "<leader>a", function()
+	local fname = vim.fn.expand("%")
+	local val, idx = harpoon:list():get_by_value(fname)
+	if idx == nil then
+		harpoon:list():add()
+		require("notify")("Added", "INFO", {
+			render = "compact",
+			animate = false,
+			hide_from_history = true,
+			timeout = 700,
+			title = "Harpoon",
+		})
+	else
+		harpoon:list():remove_at(idx)
+		require("notify")("Removed", "INFO", {
+			render = "compact",
+			animate = false,
+			hide_from_history = true,
+			timeout = 700,
+			title = "Harpoon",
+		})
+	end
+end)
+vim.keymap.set("n", "<leader>e", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
 
 vim.keymap.set("n", "<leader>1", function()
-	hui.nav_file(1)
+	harpoon:list():select(1)
 end)
 vim.keymap.set("n", "<leader>2", function()
-	hui.nav_file(2)
+	harpoon:list():select(2)
 end)
 vim.keymap.set("n", "<leader>3", function()
-	hui.nav_file(3)
+	harpoon:list():select(3)
 end)
 vim.keymap.set("n", "<leader>4", function()
-	hui.nav_file(4)
+	harpoon:list():select(4)
 end)
 vim.keymap.set("n", "<leader>5", function()
-	hui.nav_file(5)
+	harpoon:list():select(5)
 end)
 
 -- vim.keymap.set("n", "<leader>gs", vim.cmd.Git)

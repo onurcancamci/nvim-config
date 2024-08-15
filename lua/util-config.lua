@@ -48,6 +48,33 @@ require("ibl").setup({
 -- MarkSignNumHL
 vim.cmd(":hi CursorLineNr None")
 
+local Path = require("plenary.path")
+local function normalize_path(buf_name, root)
+	return Path:new(buf_name):make_relative(root)
+end
+local get_root_dir = function()
+	return vim.loop.cwd()
+end
+
+local function make_harpoon_list_item(name)
+	name = name or normalize_path(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), get_root_dir())
+
+	local bufnr = vim.fn.bufnr(name, false)
+
+	local pos = { 1, 0 }
+	if bufnr ~= -1 then
+		pos = vim.api.nvim_win_get_cursor(0)
+	end
+
+	return {
+		value = name,
+		context = {
+			row = pos[1],
+			col = pos[2],
+		},
+	}
+end
+
 require("telescope").setup({
 	extensions = {
 		fzf = {
@@ -70,15 +97,70 @@ require("telescope").setup({
 		-- config_key = value,
 		mappings = {
 			i = {
-				-- map actions.which_key to <C-h> (default: <C-/>)
-				-- actions.which_key shows the mappings for your picker,
-				-- e.g. git_{create, delete, ...}_branch for the git_branches picker
 				["<C-h>"] = "which_key",
+				["<C-e>"] = function(arg1)
+					local selection = require("telescope.actions.state").get_selected_entry()
+					local harpoon = require("harpoon")
+					local fname = vim.fn.fnamemodify(selection.path, ":.")
+					local item = make_harpoon_list_item(fname)
+					local _, idx = harpoon:list():get_by_value(item.value)
+
+					if idx == nil then
+						harpoon:list():add(item)
+						require("notify")("Added", "INFO", {
+							render = "compact",
+							animate = false,
+							hide_from_history = true,
+							timeout = 700,
+							title = "Harpoon",
+						})
+					else
+						harpoon:list():remove(item)
+						require("notify")("Removed", "INFO", {
+							render = "compact",
+							animate = false,
+							hide_from_history = true,
+							timeout = 700,
+							title = "Harpoon",
+						})
+					end
+				end,
+			},
+			n = {
+				["<c-d>"] = function(arg)
+					vim.api.nvim_command("wall")
+					require("telescope.actions").delete_buffer(arg)
+				end,
+				["<C-e>"] = function(arg1)
+					local selection = require("telescope.actions.state").get_selected_entry()
+					local harpoon = require("harpoon")
+					local fname = vim.fn.fnamemodify(selection.path, ":.")
+					local item = make_harpoon_list_item(fname)
+					local _, idx = harpoon:list():get_by_value(item.value)
+
+					if idx == nil then
+						harpoon:list():add(item)
+						require("notify")("Added", "INFO", {
+							render = "compact",
+							animate = false,
+							hide_from_history = true,
+							timeout = 700,
+							title = "Harpoon",
+						})
+					else
+						harpoon:list():remove(item)
+						require("notify")("Removed", "INFO", {
+							render = "compact",
+							animate = false,
+							hide_from_history = true,
+							timeout = 700,
+							title = "Harpoon",
+						})
+					end
+				end,
 			},
 		},
 	},
 })
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
 require("telescope").load_extension("fzf")
--- require("telescope").load_extension("media_files")
+require("telescope").load_extension("dir")

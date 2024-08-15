@@ -1,3 +1,13 @@
+local function get_harpoon_indicator(harpoon_entry)
+	print("bbbbbb", harpoon_entry)
+	return harpoon_entry.value
+end
+
+local function log_test(arg)
+	print("aaaaaa", arg)
+	return arg
+end
+
 return {
 	{ "Shatur/neovim-ayu" },
 	{
@@ -25,7 +35,36 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("lualine").setup({
-				options = { theme = "tokyonight" },
+				options = {
+					theme = "tokyonight",
+					globalstatus = false,
+					component_separators = "",
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "diagnostics" },
+					lualine_c = { "filename" },
+
+					lualine_x = {
+						{
+							"harpoon2",
+							icon = "󰀱",
+							indicators = { "1", "2", "3", "4", "5" },
+							active_indicators = { "[1]", "[2]", "[3]", "[4]", "[5]" },
+							_separator = " ",
+							no_harpoon = "Harpoon not loaded",
+						},
+						{ "%=" },
+					},
+					lualine_y = { "filetype" },
+					lualine_z = {
+						{
+							"branch",
+							-- color = { bg = "#f7768e" }
+						},
+					},
+				},
+
 				-- options = { theme = "ayu" },
 			})
 		end,
