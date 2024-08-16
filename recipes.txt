@@ -1,0 +1,23 @@
+:vimgrep /asd/ **/*
+finds and adds all to quickfix list
+
+
+find and replace in the file
+select something yank it (goes to + register)
+[optional] select something to replace with yank it (to a register "ay )
+:%s/[<C-r>+]/[<C-r>a]
+<C-r>Register => paste the register
+
+:s -- repeats the last search and replace on the line even if noh
+
+:%s/test/[&] -- this will turn "test" into "[test]"
+-------
+:cdo -- run command on all quick fix list files
+:cdo %s/asd/zxc/gI
+-------
+- folding:
+zo / zO -- opens folds / recursively
+zc  -- close folds
+zR  -- opens all folds recursively
+za  -- toggles fold
+

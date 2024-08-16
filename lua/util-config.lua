@@ -95,6 +95,22 @@ require("telescope").setup({
 	defaults = {
 		-- Default configuration for telescope goes here:
 		-- config_key = value,
+		file_ignore_patterns = {
+			"node_modules",
+			"**/*.bak",
+			"**/*-lock.json",
+		},
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--ignore-file",
+			".gitignore",
+		},
 		mappings = {
 			i = {
 				["<C-h>"] = "which_key",
@@ -125,7 +141,9 @@ require("telescope").setup({
 						})
 					end
 				end,
+				["<C-v>"] = require("telescope.actions").send_selected_to_qflist,
 			},
+
 			n = {
 				["<c-d>"] = function(arg)
 					vim.api.nvim_command("wall")
@@ -158,6 +176,7 @@ require("telescope").setup({
 						})
 					end
 				end,
+				["<C-v>"] = require("telescope.actions").send_selected_to_qflist,
 			},
 		},
 	},

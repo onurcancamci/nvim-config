@@ -166,12 +166,12 @@ vim.diagnostic.config({
 	virtual_text = {
 		severity = { vim.diagnostic.severity.ERROR },
 	},
+	underline = {
+		severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
+	},
 	signs = {
 		severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
 	},
-	-- underline = {
-	-- 	severity = { vim.diagnostic.severity.ERROR },
-	-- },
 })
 
 vim.g.diagnostics_visible = true
@@ -184,9 +184,9 @@ function _G.toggle_diagnostics()
 			signs = {
 				severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
 			},
-			-- underline = {
-			-- 	severity = { vim.diagnostic.severity.ERROR },
-			-- },
+			underline = {
+				severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
+			},
 		})
 		print("Diagnostics are hidden")
 	else
@@ -198,9 +198,9 @@ function _G.toggle_diagnostics()
 			signs = {
 				severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
 			},
-			-- underline = {
-			-- 	severity = { vim.diagnostic.severity.ERROR },
-			-- },
+			underline = {
+				severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN },
+			},
 		})
 		print("Diagnostics are visible")
 	end

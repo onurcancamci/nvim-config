@@ -1,7 +1,6 @@
 let SessionLoad = 1
 let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 let v:this_session=expand("<sfile>:p")
-let TabbyTabNames = "[]"
 silent only
 silent tabonly
 cd ~/.config/nvim
@@ -14,23 +13,31 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +34 lua/keymaps.lua
+badd +149 lua/keymaps.lua
 badd +6 term://~/.config/nvim//55523:/bin/zsh
-badd +28 lua/plugins/tabline.lua
-badd +26 lua/lsp-config.lua
-badd +161 lua/util-config.lua
-badd +1 oil:///Users/onurcan/.config/nvim/
+badd +30 lua/plugins/tabline.lua
+badd +170 lua/lsp-config.lua
+badd +185 lua/util-config.lua
 badd +5 init-backup.vim
-badd +30 init.lua
-badd +47 lua/plugins/utils.lua
-badd +1 save.vim
-badd +9 lua/plugins/oil.lua
+badd +34 init.lua
+badd +90 lua/plugins/utils.lua
+badd +59 save.vim
+badd +4 lua/plugins/oil.lua
 badd +12 lua/plugins/telescope.lua
-badd +82 lua/plugins/style.lua
+badd +48 lua/plugins/style.lua
+badd +3 lua/style.lua
+badd +23 recipes.lua
+badd +257 ~/.config/nvim/lua/neotree-config.lua.bak
+badd +6 ~/.config/nvim/lua/plugins/lsp.lua
+badd +1 ~/.config/nvim/lua/plugins/snip.lua
+badd +1 ~/.config/nvim/lua/plugins/treesitter.lua
+badd +1 oil:///Users/onurcan/.config/nvim/
+badd +6 recipes.txt
+badd +22 example/ex1.txt
 argglobal
 %argdel
 $argadd oil:///Users/onurcan/.config/nvim/
-edit lua/plugins/style.lua
+edit lua/keymaps.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -50,18 +57,18 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 113 + 114) / 228)
 exe 'vert 2resize ' . ((&columns * 114 + 114) / 228)
 argglobal
-balt lua/util-config.lua
+balt recipes.txt
 let s:cpo_save=&cpo
 set cpo&vim
 nnoremap <buffer>  vca <Cmd>lua vim.lsp.buf.code_action()
 nnoremap <buffer> K <Cmd>lua vim.lsp.buf.hover()
-nnoremap <buffer> gd <Cmd>lua vim.lsp.buf.definition()
-nnoremap <buffer> gD <Cmd>lua vim.lsp.buf.declaration()
-nnoremap <buffer> gi <Cmd>lua vim.lsp.buf.implementation()
-nnoremap <buffer> go <Cmd>lua vim.lsp.buf.type_definition()
-nnoremap <buffer> gr <Cmd>Telescope lsp_references
-nnoremap <buffer> gs <Cmd>lua vim.lsp.buf.signature_help()
 nnoremap <buffer> gl <Cmd>lua vim.diagnostic.open_float()
+nnoremap <buffer> gS <Cmd>lua vim.lsp.buf.signature_help()
+nnoremap <buffer> gr <Cmd>Telescope lsp_references
+nnoremap <buffer> go <Cmd>lua vim.lsp.buf.type_definition()
+nnoremap <buffer> gi <Cmd>lua vim.lsp.buf.implementation()
+nnoremap <buffer> gD <Cmd>lua vim.lsp.buf.declaration()
+nnoremap <buffer> gd <Cmd>lua vim.lsp.buf.definition()
 nnoremap <buffer> <F2> <Cmd>lua vim.lsp.buf.rename()
 let &cpo=s:cpo_save
 unlet s:cpo_save
@@ -106,14 +113,14 @@ setlocal fillchars=
 setlocal fixendofline
 setlocal foldcolumn=0
 setlocal foldenable
-setlocal foldexpr=0
+setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=99
 setlocal foldmarker={{{,}}}
-setlocal foldmethod=manual
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
+setlocal foldmethod=expr
+setlocal foldminlines=4
+setlocal foldnestmax=3
+setlocal foldtext=
 setlocal formatexpr=v:lua.vim.lsp.formatexpr()
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatoptions=jcroql
@@ -167,7 +174,7 @@ setlocal spellfile=
 setlocal spelllang=en
 setlocal spelloptions=noplainbuffer
 setlocal statuscolumn=
-setlocal statusline=%#lualine_a_command#\ COMMAND\ %#lualine_transitional_lualine_a_command_to_lualine_b_diagnostics_hint_command#î‚°%#lualine_b_diagnostics_hint_command#\ ó°Œ¶\ 5\ %#lualine_transitional_lualine_b_diagnostics_hint_command_to_lualine_c_normal#î‚°%<%#lualine_c_normal#\ style.lua\ %#lualine_c_normal#%=%#lualine_c_normal#\ ó°€±\ [1]\ 2\ %#lualine_c_normal#\ %=\ %#lualine_transitional_lualine_y_filetype_DevIconLua_command_to_lualine_c_normal#î‚²%#lualine_y_filetype_DevIconLua_command#\ î˜ \ %#lualine_b_command#lua\ %#lualine_transitional_lualine_a_command_to_lualine_b_command#î‚²%#lualine_a_command#\ î‚ \ main\ 
+setlocal statusline=%<%#lualine_c_inactive#\ keymaps.lua\ %#lualine_c_inactive#%=%#lualine_c_inactive#\ ó°€±\ 1\ 2\ 3\ 4\ %#lualine_c_inactive#\ %=\ %#lualine_y_filetype_DevIconLua_0_inactive#\ î˜ \ %#lualine_b_inactive#lua\ %#lualine_a_inactive#\ Bot\ 
 setlocal suffixesadd=.lua
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -194,27 +201,25 @@ setlocal nowinfixwidth
 setlocal winhighlight=
 setlocal nowrap
 setlocal wrapmargin=0
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 82 - ((52 * winheight(0) + 30) / 61)
+let s:l = 149 - ((49 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 82
-normal! 033|
+keepjumps 149
+normal! 062|
 wincmd w
 argglobal
 if bufexists(fnamemodify("lua/plugins/utils.lua", ":p")) | buffer lua/plugins/utils.lua | else | edit lua/plugins/utils.lua | endif
 if &buftype ==# 'terminal'
   silent file lua/plugins/utils.lua
 endif
-balt lua/keymaps.lua
+balt lua/util-config.lua
 let s:cpo_save=&cpo
 set cpo&vim
 nnoremap <buffer>  vca <Cmd>lua vim.lsp.buf.code_action()
 nnoremap <buffer> K <Cmd>lua vim.lsp.buf.hover()
 nnoremap <buffer> gl <Cmd>lua vim.diagnostic.open_float()
-nnoremap <buffer> gs <Cmd>lua vim.lsp.buf.signature_help()
+nnoremap <buffer> gS <Cmd>lua vim.lsp.buf.signature_help()
 nnoremap <buffer> gr <Cmd>Telescope lsp_references
 nnoremap <buffer> go <Cmd>lua vim.lsp.buf.type_definition()
 nnoremap <buffer> gi <Cmd>lua vim.lsp.buf.implementation()
@@ -264,14 +269,14 @@ setlocal fillchars=
 setlocal fixendofline
 setlocal foldcolumn=0
 setlocal foldenable
-setlocal foldexpr=0
+setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=99
 setlocal foldmarker={{{,}}}
-setlocal foldmethod=manual
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
+setlocal foldmethod=expr
+setlocal foldminlines=4
+setlocal foldnestmax=3
+setlocal foldtext=
 setlocal formatexpr=v:lua.vim.lsp.formatexpr()
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatoptions=jcroql
@@ -325,7 +330,7 @@ setlocal spellfile=
 setlocal spelllang=en
 setlocal spelloptions=noplainbuffer
 setlocal statuscolumn=
-setlocal statusline=%<%#lualine_c_inactive#\ utils.lua\ %#lualine_c_inactive#%=%#lualine_c_inactive#\ ó°€±\ 1\ [2]\ %#lualine_c_inactive#\ %=\ 
+setlocal statusline=%#lualine_a_command#\ COMMAND\ %#lualine_transitional_lualine_a_command_to_lualine_c_normal#î‚°%<%#lualine_c_normal#\ utils.lua\ %#lualine_c_normal#%=%#lualine_c_normal#\ ó°€±\ 1\ 2\ 3\ 4\ %#lualine_c_normal#\ %=\ %#lualine_transitional_lualine_y_filetype_DevIconLua_command_to_lualine_c_normal#î‚²%#lualine_y_filetype_DevIconLua_command#\ î˜ \ %#lualine_b_command#lua\ %#lualine_b_command#%#lualine_b_command#\ 84%%\ %#lualine_transitional_lualine_a_command_to_lualine_b_command#î‚²%#lualine_a_command#\ î‚ \ main\ 
 setlocal suffixesadd=.lua
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -352,15 +357,16 @@ setlocal nowinfixwidth
 setlocal winhighlight=
 setlocal nowrap
 setlocal wrapmargin=0
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 27 - ((14 * winheight(0) + 30) / 61)
+1
+normal! zo
+let s:l = 76 - ((25 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 27
-normal! 030|
+keepjumps 76
+normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 113 + 114) / 228)
 exe 'vert 2resize ' . ((&columns * 114 + 114) / 228)
 tabnext 1

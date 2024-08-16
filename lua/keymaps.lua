@@ -43,6 +43,8 @@ vim.keymap.set("n", "<leader>pb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>pd", builtin.diagnostics, {})
 vim.keymap.set("n", "<leader>pF", "<cmd>Telescope dir find_files<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>pm", "<cmd>Telescope marks mark_type=all<CR>", {})
+vim.keymap.set("n", "<leader>pqf", builtin.quickfix, {}) -- project quick fix
+
 vim.keymap.set("n", "<leader>bw", "40<C-w>|:set wfw<CR>")
 
 -- vim.keymap.set("n", "<C-p>", builtin.git_files, {})
@@ -143,3 +145,8 @@ vim.keymap.set("n", "<leader>tmp", ":-tabmove<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
 
 vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
+
+vim.keymap.set("v", "<leader>(", "<Esc>`>a)<Esc>`<i(<Esc>", {})
+vim.keymap.set("v", "<leader>[", "<Esc>`>a]<Esc>`<i[<Esc>", {})
+vim.keymap.set("v", "<leader>{", "<Esc>`>a}<Esc>`<i{<Esc>", {})
+vim.keymap.set("v", "<leader><", "<Esc>`>a><Esc>`<i<<Esc>", {})

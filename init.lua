@@ -38,6 +38,7 @@ vim.opt.wrap = false
 vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 8
 vim.cmd("highlight ColorColumn ctermbg=0 guibg=#282a3c")
+-- vim.cmd("highlight SnippetTabstop ")
 
 vim.g.highlightedyank_highlight_duration = 100
 
@@ -53,6 +54,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
 	end,
 })
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.opt.foldnestmax = 3
+vim.opt.foldminlines = 4
+vim.opt.foldtext = ""
 
 -- local function start_up_func()
 -- 	vim.cmd("Neotree")
