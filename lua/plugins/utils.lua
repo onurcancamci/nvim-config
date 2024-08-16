@@ -31,18 +31,18 @@ return {
 		opts = {},
 	},
 	{ "chentoast/marks.nvim" },
-	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim", -- optional - Diff integration
-
-			-- Only one of these is needed, not both.
-			"nvim-telescope/telescope.nvim", -- optional
-			"ibhagwan/fzf-lua", -- optional
-		},
-		config = true,
-	},
+	-- {
+	-- 	"NeogitOrg/neogit",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim", -- required
+	-- 		"sindrets/diffview.nvim", -- optional - Diff integration
+	--
+	-- 		-- Only one of these is needed, not both.
+	-- 		"nvim-telescope/telescope.nvim", -- optional
+	-- 		"ibhagwan/fzf-lua", -- optional
+	-- 	},
+	-- 	config = true,
+	-- },
 	{
 		"rcarriga/nvim-notify",
 		config = function()
@@ -70,6 +70,20 @@ return {
 			{
 				"ThePrimeagen/harpoon",
 				branch = "harpoon2",
+			},
+		},
+	},
+	{
+		"echasnovski/mini.surround",
+		opts = {
+			mappings = {
+				add = "gsa",
+				delete = "gsd",
+				find = "gsf",
+				find_left = "gsF",
+				highlight = "gsh",
+				replace = "gsr",
+				update_n_lines = "gsn",
 			},
 		},
 	},

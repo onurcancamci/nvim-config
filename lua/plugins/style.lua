@@ -56,7 +56,7 @@ return {
 						},
 						{ "%=" },
 					},
-					lualine_y = { "filetype" },
+					lualine_y = { "filetype", "progress" },
 					lualine_z = {
 						{
 							"branch",
@@ -80,7 +80,7 @@ return {
 						{ "%=" },
 					},
 					lualine_y = { "filetype" },
-					lualine_z = {},
+					lualine_z = { "progress" },
 				},
 
 				-- options = { theme = "ayu" },

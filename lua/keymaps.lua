@@ -92,7 +92,7 @@ vim.keymap.set("n", "<leader>5", function()
 	harpoon:list():select(5)
 end)
 
--- vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+vim.keymap.set("n", "<leader>fg", vim.cmd.Git)
 
 vim.keymap.set("n", "<M-left>", "<C-w>h")
 vim.keymap.set("n", "<M-right>", "<C-w>l")
