@@ -1,13 +1,3 @@
-local function get_harpoon_indicator(harpoon_entry)
-	print("bbbbbb", harpoon_entry)
-	return harpoon_entry.value
-end
-
-local function log_test(arg)
-	print("aaaaaa", arg)
-	return arg
-end
-
 return {
 	{ "Shatur/neovim-ayu" },
 	{
