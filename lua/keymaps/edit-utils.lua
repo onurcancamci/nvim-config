@@ -15,10 +15,14 @@ vim.keymap.set("n", "<D-s>", ":w<CR>", { noremap = false })
 vim.keymap.set("n", "<C-z>", "u")
 
 vim.keymap.set("n", "<leader>f", function()
-	require("conform").format({ async = true })
+  require("conform").format({ async = true })
 end)
 
-vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set(
+  "n",
+  "<leader>r",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+)
 
 -- vim.keymap.set("n", "<leader>M", ":delm a-z<CR>", { silent = true })
 

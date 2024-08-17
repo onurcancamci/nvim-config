@@ -11,7 +11,7 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
-vim.opt.smartindent = true
+-- vim.opt.smartindent = true
 
 -- Search
 vim.opt.ignorecase = true
@@ -20,7 +20,8 @@ vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 
 -- Persistance
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
+vim.o.sessionoptions =
+  "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 -- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 -- vim.opt.undofile = true
 
