@@ -1,1 +1,2 @@
-vim.keymap.set("n", "<leader>fg", vim.cmd.Git)
+vim.keymap.set("n", "<leader>gw", vim.cmd.Git)
+vim.keymap.set("n", "<leader>gs", ":Git status<CR>")

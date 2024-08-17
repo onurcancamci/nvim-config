@@ -2,16 +2,18 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
+		local cs = require("current-color-scheme")
+
 		require("lualine").setup({
 			options = {
-				theme = "tokyonight",
+				theme = cs.lualine,
 				globalstatus = false,
 				component_separators = "",
 			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "diagnostics" },
-				lualine_c = { "filename" },
+				lualine_c = { "diff", "filename" },
 
 				lualine_x = {
 					{
@@ -27,6 +29,7 @@ return {
 				lualine_y = { "filetype", "progress" },
 				lualine_z = {
 					{
+
 						"branch",
 						-- color = { bg = "#f7768e" }
 					},

@@ -20,4 +20,6 @@ return {
 		end,
 	},
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	-- { "Th3Whit3Wolf/onebuddy", opts = {}, priority = 1000, dependencies = { "tjdevries/colorbuddy.vim" } },
+	{ "roflolilolmao/oceanic-next.nvim" },
 }

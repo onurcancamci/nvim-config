@@ -21,8 +21,8 @@ vim.opt.inccommand = "split"
 
 -- Persistance
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+-- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- vim.opt.undofile = true
 
 -- Fold
 vim.opt.foldmethod = "expr"
@@ -37,7 +37,6 @@ vim.opt.foldtext = ""
 vim.opt.wrap = false
 vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 8
-vim.cmd("highlight ColorColumn ctermbg=0 guibg=#282a3c")
 
 -- Annoyance Fixes
 vim.o.timeout = false

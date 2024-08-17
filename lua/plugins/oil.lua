@@ -41,8 +41,24 @@ return {
 					natural_order = true,
 				},
 				watch_for_changes = false,
+				win_options = {
+					signcolumn = "yes:1",
+				},
 			})
 			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		end,
+	},
+	{
+		"refractalize/oil-git-status.nvim",
+
+		dependencies = {
+			"stevearc/oil.nvim",
+		},
+
+		config = function()
+			require("oil-git-status").setup({
+				show_ignored = false, -- show files that match gitignore with !!
+			})
 		end,
 	},
 }
