@@ -1,0 +1,30 @@
+vim.keymap.set("n", "<leader><space>", ":noh<CR>", { noremap = true })
+
+-- Shift Option O => make a new line up
+vim.keymap.set("n", "Ø", "O<Esc>j", { noremap = false })
+vim.keymap.set("n", "ø", "o<Esc>k", { noremap = false })
+
+-- move lines in visual mode by shift up/down
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv")
+
+-- regular cmd keys
+vim.keymap.set("n", "<D-s>", ":w<CR>", { noremap = false })
+vim.keymap.set("n", "<C-z>", "u")
+
+vim.keymap.set("n", "<leader>f", function()
+	require("conform").format({ async = true })
+end)
+
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- vim.keymap.set("n", "<leader>M", ":delm a-z<CR>", { silent = true })
+
+vim.keymap.set("v", "<leader>(", "<Esc>`>a)<Esc>`<i(<Esc>", {})
+vim.keymap.set("v", "<leader>[", "<Esc>`>a]<Esc>`<i[<Esc>", {})
+vim.keymap.set("v", "<leader>{", "<Esc>`>a}<Esc>`<i{<Esc>", {})
+vim.keymap.set("v", "<leader><", "<Esc>`>a><Esc>`<i<<Esc>", {})
+vim.keymap.set("v", "<leader>'", "<Esc>'>a}<Esc>'<i{<Esc>", {})
+vim.keymap.set("v", '<leader>"', '<Esc>">a}<Esc>"<i{<Esc>', {})
