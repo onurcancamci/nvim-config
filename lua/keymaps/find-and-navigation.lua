@@ -30,18 +30,12 @@ vim.keymap.set("n", "<leader>ps", function()
   telescope.lsp_document_symbols({
     symbols = { "function", "class", "method", "interface", "enum", "struct" },
   })
-  --:Telescope lsp_document_symbols symbols={"method", "function"}
 end)
 
 vim.api.nvim_create_user_command("Search", function(opts)
   require("telescope.builtin").live_grep({ default_text = opts.args })
 end, { nargs = 1 })
 
--- vim.keymap.set(
---   "v",
---   "<leader>pg",
---   [[:<C-U>lua require('telescope.builtin').live_grep({ default_text = vim.fn.trim(vim.fn.getreg('v')) })<CR>]],
---   { noremap = true, silent = true }
--- )
---
 vim.keymap.set("v", "<leader>pg", '"zy:Search <C-r>z<CR>')
+vim.keymap.set("n", "<leader>p?", ":Telescope keymaps<CR>")
+vim.keymap.set("n", "<leader>ph", ":Telescope highlights<CR>")

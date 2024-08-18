@@ -68,24 +68,7 @@ vim.keymap.set(
   { silent = true, noremap = true }
 )
 
-local function get_fg_color(group)
-  return vim.fn.synIDattr(vim.fn.hlID(group), "fg")
-end
-
 -- Retrieve key colors from tokyonight
-local colors = {
-  red = get_fg_color("Error"), -- Red color
-  yellow = get_fg_color("WarningMsg"), -- Yellow color
-  green = get_fg_color("DiffAdd"), -- Green color
-  cyan = get_fg_color("@property"), -- Cyan color
-  blue = get_fg_color("Function"), -- Blue color
-  magenta = get_fg_color("Statement"), -- Magenta color
-}
-
-vim.cmd("highlight DiagnosticLineNrError guifg=" .. colors.red .. " gui=bold")
-vim.cmd("highlight DiagnosticLineNrWarn guifg=" .. colors.yellow .. " gui=bold")
-vim.cmd("highlight DiagnosticLineNrInfo guifg=" .. colors.blue .. " gui=bold")
-vim.cmd("highlight DiagnosticLineNrHint guifg=" .. colors.cyan .. " gui=bold")
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",

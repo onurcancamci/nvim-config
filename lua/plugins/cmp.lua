@@ -33,7 +33,7 @@ return {
 
       cmp.setup({
         sources = {
-          { name = "calc" },
+          -- { name = "calc" },
           { name = "nvim_lsp" },
           -- { name = "luasnip" },
         },
@@ -70,9 +70,11 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         enabled = function()
-          -- disable completion in comments
           local context = require("cmp.config.context")
-          -- keep command mode completion enabled when cursor is in a comment
+
+          if vim.bo.filetype == "TelescopePrompt" then
+            return false
+          end
           if vim.api.nvim_get_mode().mode == "c" then
             return true
           else

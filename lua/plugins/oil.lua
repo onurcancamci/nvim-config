@@ -26,6 +26,7 @@ return {
             extension = {
               ["page.tsx"] = { hl = "MiniIconsOrange" },
               ["util.ts"] = { hl = "MiniIconsGreen" },
+              ["hook.ts"] = { hl = "MiniIconsPurple" },
             },
           })
         end,
@@ -172,30 +173,6 @@ return {
           },
         },
       })
-
-      vim.cmd("highlight! link OilVcsStatusAdded DiagnosticSignHint")
-      vim.cmd("highlight! link OilVcsStatusCopied DiagnosticSignWarn")
-      vim.cmd("highlight! link OilVcsStatusDeleted DiagnosticSignError")
-      vim.cmd("highlight! link OilVcsStatusIgnored @comment")
-      vim.cmd("highlight! link OilVcsStatusModified DiagnosticSignWarn")
-      vim.cmd("highlight! link OilVcsStatusRenamed @function")
-      vim.cmd("highlight! link OilVcsStatusTypeChanged @function")
-      vim.cmd("highlight! link OilVcsStatusUnmodified @comment")
-      vim.cmd("highlight! link OilVcsStatusUnmerged @character")
-      vim.cmd("highlight! link OilVcsStatusUntracked @keyword")
-      vim.cmd("highlight! link OilVcsStatusExternal @comment")
-
-      vim.cmd("highlight! link OilVcsStatusUpstreamAdded DiagnosticSignHint")
-      vim.cmd("highlight! link OilVcsStatusUpstreamCopied DiagnosticSignWarn")
-      vim.cmd("highlight! link OilVcsStatusUpstreamDeleted DiagnosticSignError")
-      vim.cmd("highlight! link OilVcsStatusUpstreamIgnored @comment")
-      vim.cmd("highlight! link OilVcsStatusUpstreamModified DiagnosticSignWarn")
-      vim.cmd("highlight! link OilVcsStatusUpstreamRenamed @function")
-      vim.cmd("highlight! link OilVcsStatusUpstreamTypeChanged @function")
-      vim.cmd("highlight! link OilVcsStatusUpstreamUnmodified @comment")
-      vim.cmd("highlight! link OilVcsStatusUpstreamUnmerged @character")
-      vim.cmd("highlight! link OilVcsStatusUpstreamUntracked @keyword")
-      vim.cmd("highlight! link OilVcsStatusUpstreamExternal @comment")
     end,
   },
 }

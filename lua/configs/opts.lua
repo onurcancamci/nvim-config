@@ -22,8 +22,8 @@ vim.opt.inccommand = "split"
 -- Persistance
 vim.o.sessionoptions =
   "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
--- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
--- vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
 
 -- Fold
 vim.opt.foldmethod = "expr"

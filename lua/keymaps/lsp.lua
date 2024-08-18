@@ -6,6 +6,7 @@ function M.keymaps(client, bufnr)
 
   vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
   vim.keymap.set("n", "gd", telescope.lsp_definitions, opts)
+  -- vim.keymap.set("n", "gD", telescope.lsp_definitions, opts)
   vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
   vim.keymap.set("n", "gi", telescope.lsp_implementations, opts)
   vim.keymap.set("n", "go", telescope.lsp_type_definitions, opts)
@@ -22,7 +23,11 @@ function M.keymaps(client, bufnr)
     })
   end, opts)
   vim.keymap.set("n", "]d", function()
-    vim.diagnostic.jump({ count = 1, float = true })
+    vim.diagnostic.jump({
+      count = 1,
+      float = true,
+      severity = { vim.diagnostic.severity.ERROR },
+    })
   end, opts)
 end
 

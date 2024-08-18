@@ -62,7 +62,11 @@ return {
             "node_modules",
             "**/*.bak",
             "**/*-lock.json",
+            "**/*-lock.yaml",
             "save.vim",
+            "dist",
+            "**/*.map",
+            "bin/cli",
           },
           vimgrep_arguments = {
             "rg",

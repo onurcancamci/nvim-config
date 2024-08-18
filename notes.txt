@@ -21,3 +21,6 @@ zc  -- close folds
 zR  -- opens all folds recursively
 za  -- toggles fold
 
+
+-------
+go definition on new split CTRL-W_]
