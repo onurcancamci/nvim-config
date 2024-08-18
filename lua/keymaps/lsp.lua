@@ -15,13 +15,20 @@ function M.keymaps(client, bufnr)
   vim.keymap.set("n", "gca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
   vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   vim.keymap.set("n", "[d", function()
-    vim.diagnostic.jump({ count = -1, float = true })
+    vim.diagnostic.jump({
+      count = -1,
+      float = true,
+      severity = { vim.diagnostic.severity.ERROR },
+    })
   end, opts)
   vim.keymap.set("n", "]d", function()
     vim.diagnostic.jump({ count = 1, float = true })
   end, opts)
 end
 
+vim.keymap.del("n", "grn")
+vim.keymap.del({ "v", "n" }, "gra")
+vim.keymap.del("n", "grr")
 return M
 
 -- vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)

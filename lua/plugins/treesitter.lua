@@ -54,11 +54,19 @@ return {
             set_jumps = true, -- you can change this if you want.
             goto_next_start = {
               ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
+              ["]f"] = {
+                query = "@function.outer",
+                desc = "next function",
+              },
             },
             goto_previous_start = {
               ["[b"] = {
                 query = "@code_cell.inner",
                 desc = "previous code block",
+              },
+              ["[f"] = {
+                query = "@function.outer",
+                desc = "previous function",
               },
             },
           },
@@ -69,6 +77,14 @@ return {
               --- ... other keymaps
               ["ib"] = { query = "@code_cell.inner", desc = "in block" },
               ["ab"] = { query = "@code_cell.outer", desc = "around block" },
+              ["if"] = {
+                query = "@function.inner",
+                desc = "in function",
+              },
+              ["af"] = {
+                query = "@function.outer",
+                desc = "around function",
+              },
             },
           },
         },

@@ -42,7 +42,7 @@ return {
         },
         watch_for_changes = false,
         win_options = {
-          signcolumn = "yes:1",
+          -- signcolumn = "yes:1",
         },
       })
       vim.keymap.set(

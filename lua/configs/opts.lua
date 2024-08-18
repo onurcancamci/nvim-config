@@ -4,7 +4,7 @@ vim.opt.pumheight = 20
 -- Left Column
 vim.opt.nu = true
 vim.opt.relativenumber = true
--- vim.o.signcolumn = "yes:2"
+vim.opt.signcolumn = "yes:2"
 
 -- Indent
 vim.opt.shiftwidth = 2
