@@ -43,3 +43,6 @@ vim.opt.scrolloff = 8
 vim.o.timeout = false
 vim.opt.splitright = true
 vim.opt.clipboard = "unnamed"
+
+vim.g.python3_host_prog = "/Users/onurcan/.pyenv/shims/python"
+vim.g.python2_host_prog = "/Users/onurcan/.pyenv/shims/python"

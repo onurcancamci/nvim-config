@@ -50,13 +50,10 @@ return {
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
-          -- media_files = {
-          -- 	-- filetypes whitelist
-          -- 	-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-          -- 	filetypes = { "png", "webp", "jpg", "jpeg", "svg" },
-          -- 	-- find command (defaults to `fd`)
-          -- 	find_cmd = "timg",
-          -- },
+          media_files = {
+            filetypes = { "png", "webp", "jpg", "jpeg", "svg" },
+            find_cmd = "rg",
+          },
         },
         defaults = {
           -- Default configuration for telescope goes here:
@@ -152,6 +149,7 @@ return {
       })
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("dir")
+      require("telescope").load_extension("media_files")
     end,
   },
   {
@@ -170,5 +168,8 @@ return {
         show_preview = true,
       })
     end,
+  },
+  {
+    "nvim-telescope/telescope-media-files.nvim",
   },
 }

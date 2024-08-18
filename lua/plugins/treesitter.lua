@@ -48,7 +48,37 @@ return {
         sync_install = false,
         highlight = { enable = true },
         indent = { enable = true },
+        textobjects = {
+          move = {
+            enable = true,
+            set_jumps = true, -- you can change this if you want.
+            goto_next_start = {
+              ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
+            },
+            goto_previous_start = {
+              ["[b"] = {
+                query = "@code_cell.inner",
+                desc = "previous code block",
+              },
+            },
+          },
+          select = {
+            enable = true,
+            lookahead = true, -- you can change this if you want
+            keymaps = {
+              --- ... other keymaps
+              ["ib"] = { query = "@code_cell.inner", desc = "in block" },
+              ["ab"] = { query = "@code_cell.outer", desc = "around block" },
+            },
+          },
+        },
       })
     end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    -- after = "nvim-treesitter",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    -- init = function() end,
   },
 }
