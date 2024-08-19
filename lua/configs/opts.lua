@@ -38,6 +38,7 @@ vim.opt.foldtext = ""
 vim.opt.wrap = false
 vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 8
+vim.opt.cursorline = false
 
 -- Annoyance Fixes
 vim.o.timeout = false

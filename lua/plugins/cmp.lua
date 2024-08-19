@@ -3,6 +3,8 @@ return {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
+
+      local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local kind_icons = {
         Text = "",
         Method = "󰆧",
@@ -43,11 +45,15 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
+          ["<C-f>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(4),
+
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+          ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+
+          ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-k>"] = cmp.mapping({
             i = function()
               if cmp.visible() then
@@ -64,6 +70,7 @@ return {
               end
             end,
           }),
+          -- ["<C-e>"] = cmp.mapping.abort(),
         }),
         window = {
           -- completion = cmp.config.window.bordered(),
@@ -85,18 +92,66 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
+            local function get_lsp_completion_context(completion, source)
+              local ok, source_name = pcall(function()
+                return source.source.client.config.name
+              end)
+              if not ok then
+                return nil
+              end
+              if source_name == "tsserver" then
+                return completion.detail
+              elseif source_name == "pyright" or source_name == "vtsls" then
+                if completion.labelDetails ~= nil then
+                  return completion.labelDetails.description
+                end
+              elseif source_name == "gopls" then
+                -- And this, for the record, is how I inspect payloads
+                -- require("ditsuke.utils").logger("completion source: ", completion) -- Lazy-serialization of heavy payloads
+                -- require("ditsuke.utils").logger("completion detail added to gopls")
+                return completion.detail
+              end
+            end
+
             -- Kind icons
             -- vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
-            -- Source
-            vim_item.menu = ({
-              buffer = "[Buffer]",
+
+            -- -- Source
+            -- vim_item.menu = ({
+            --   buffer = "[Buffer]",
+            --   nvim_lsp = "[LSP]",
+            --   luasnip = "[LuaSnip]",
+            --   nvim_lua = "[Lua]",
+            --   latex_symbols = "[LaTeX]",
+            --   calc = "[Calc]",
+            -- })[entry.source.name]
+            --
+            -- if entry.source.name == "buffer" then
+            --   vim_item.menu = vim_item.menu
+            --     .. " "
+            --     .. vim.fn.fnamemodify(entry.context.bufname, ":t")
+            -- end
+
+            local source_names = {
               nvim_lsp = "[LSP]",
-              luasnip = "[LuaSnip]",
               nvim_lua = "[Lua]",
+              luasnip = "[Snippet]",
+              buffer = "[Buffer]",
+              path = "[Path]",
               latex_symbols = "[LaTeX]",
               calc = "[Calc]",
-            })[entry.source.name]
+            }
+
+            -- Assign a default source name if not already set
+            vim_item.menu = source_names[entry.source.name] or entry.source.name
+
+            local completion_context =
+              get_lsp_completion_context(entry.completion_item, entry.source)
+            if completion_context ~= nil and completion_context ~= "" then
+              vim_item.menu = completion_context
+            end
+
             return vim_item
           end,
         },

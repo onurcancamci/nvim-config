@@ -65,7 +65,8 @@ return {
             "**/*-lock.yaml",
             "save.vim",
             "dist",
-            "**/*.map",
+            "**/*.js.map",
+            "**/*.ts.map",
             "bin/cli",
           },
           vimgrep_arguments = {

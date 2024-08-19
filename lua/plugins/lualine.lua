@@ -4,9 +4,18 @@ return {
   config = function()
     local cs = require("current-color-scheme")
 
+    local theme = cs.lualine
+
+    if theme == "catppuccin-macchiato" then
+      local custom_catpuccin = require("lualine.themes.catppuccin-macchiato")
+      custom_catpuccin.visual.a.bg = "#AD6FF7"
+      custom_catpuccin.visual.b.fg = "#AD6FF7"
+      theme = custom_catpuccin
+    end
+
     require("lualine").setup({
       options = {
-        theme = cs.lualine,
+        theme = theme,
         globalstatus = false,
         component_separators = "",
       },

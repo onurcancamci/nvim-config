@@ -46,7 +46,9 @@ return {
           "yaml",
         },
         sync_install = false,
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+        },
         indent = { enable = true },
         textobjects = {
           move = {
