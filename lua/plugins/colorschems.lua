@@ -85,9 +85,121 @@ return {
             ["@parameter"] = { fg = colors.pink },
             ["@keyword.export"] = { link = "Import" },
             ["@lsp.type.interface"] = { fg = colors.maroon },
+            ["@lsp.type.enum"] = { fg = colors.maroon },
             ["@type.builtin"] = { fg = colors.lavender },
             ["Function"] = { fg = colors.blue },
             ["@tag.tsx"] = { fg = colors.sky },
+            ["Constant"] = { fg = colors.lavender },
+            ["@constant.builtin"] = { fg = colors.pink },
+
+            TelescopePromptBorder = { fg = colors.mauve },
+            TelescopePromptTitle = { fg = colors.mauve },
+
+            CmpItemKind = { bg = colors.surface2, fg = colors.text },
+            -- CmpItemKindText = { bg = colors.surface2, fg = colors.text },
+            -- CmpItemKindSnippet = { bg = colors.surface2, fg = colors.text },
+            -- CmpItemKindOperator = { bg = colors.surface2, fg = colors.text },
+            --
+            -- CmpItemKindFunction = { bg = colors.dssaphire, fg = colors.text },
+            -- CmpItemKindMethod = { bg = colors.dssaphire, fg = colors.text },
+            -- CmpItemKindConstructor = { bg = colors.dssaphire, fg = colors.text },
+            -- CmpItemKindEvent = { bg = colors.dssaphire, fg = colors.text },
+            --
+            -- CmpItemKindField = { bg = colors.dsteal, fg = colors.text },
+            -- CmpItemKindProperty = { bg = colors.dsteal, fg = colors.text },
+            -- CmpItemKindEnumMember = { bg = colors.dsteal, fg = colors.text },
+            -- CmpItemKindVariable = { bg = colors.dsteal, fg = colors.text },
+            --
+            -- CmpItemKindClass = { bg = colors.dsorange, fg = colors.text },
+            -- CmpItemKindModule = { bg = colors.dsorange, fg = colors.text },
+            -- CmpItemKindFile = { bg = colors.dsorange, fg = colors.text },
+            -- CmpItemKindFolder = { bg = colors.dsorange, fg = colors.text },
+            -- CmpItemKindReference = { bg = colors.dsorange, fg = colors.text },
+            -- CmpItemKindStruct = { bg = colors.dsorange, fg = colors.text },
+            --
+            -- CmpItemKindInterface = { bg = colors.dspink, fg = colors.text },
+            -- CmpItemKindEnum = { bg = colors.dspink, fg = colors.text },
+            -- CmpItemKindTypeParameter = { bg = colors.dspink, fg = colors.text },
+            --
+            -- CmpItemKindUnit = { bg = colors.dspurple, fg = colors.text },
+            -- CmpItemKindValue = { bg = colors.dspurple, fg = colors.text },
+            -- CmpItemKindColor = { bg = colors.dspurple, fg = colors.text },
+            -- CmpItemKindKeyword = { bg = colors.dspurple, fg = colors.text },
+            -- CmpItemKindConstant = { bg = colors.dspurple, fg = colors.text },
+
+            -- CmpItemKindText = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindSnippet = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindOperator = { bg = colors.surface2, fg = colors.subtext0 },
+            --
+            -- CmpItemKindFunction = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindMethod = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindConstructor = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindEvent = { bg = colors.surface2, fg = colors.subtext0 },
+            --
+            -- CmpItemKindField = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindProperty = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindEnumMember = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindVariable = { bg = colors.surface2, fg = colors.subtext0 },
+            --
+            -- CmpItemKindClass = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindModule = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindFile = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindFolder = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindReference = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindStruct = { bg = colors.surface2, fg = colors.subtext0 },
+            --
+            -- CmpItemKindInterface = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindEnum = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindTypeParameter = {
+            --   bg = colors.surface2,
+            --   fg = colors.subtext0,
+            -- },
+            --
+            -- CmpItemKindUnit = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindValue = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindColor = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindKeyword = { bg = colors.surface2, fg = colors.subtext0 },
+            -- CmpItemKindConstant = { bg = colors.surface2, fg = colors.subtext0 },
+            --
+
+            CmpItemKindText = { fg = colors.subtext0 },
+            CmpItemKindSnippet = { fg = colors.subtext0 },
+            CmpItemKindOperator = { fg = colors.subtext0 },
+
+            CmpItemKindFunction = { fg = colors.subtext0 },
+            CmpItemKindMethod = { fg = colors.subtext0 },
+            CmpItemKindConstructor = { fg = colors.subtext0 },
+            CmpItemKindEvent = { fg = colors.subtext0 },
+
+            CmpItemKindField = { fg = colors.subtext0 },
+            CmpItemKindProperty = { fg = colors.subtext0 },
+            CmpItemKindEnumMember = { fg = colors.subtext0 },
+            CmpItemKindVariable = { fg = colors.subtext0 },
+
+            CmpItemKindClass = { fg = colors.subtext0 },
+            CmpItemKindModule = { fg = colors.subtext0 },
+            CmpItemKindFile = { fg = colors.subtext0 },
+            CmpItemKindFolder = { fg = colors.subtext0 },
+            CmpItemKindReference = { fg = colors.subtext0 },
+            CmpItemKindStruct = { fg = colors.subtext0 },
+
+            CmpItemKindInterface = { fg = colors.subtext0 },
+            CmpItemKindEnum = { fg = colors.subtext0 },
+            CmpItemKindTypeParameter = {
+
+              fg = colors.subtext0,
+            },
+
+            CmpItemKindUnit = { fg = colors.subtext0 },
+            CmpItemKindValue = { fg = colors.subtext0 },
+            CmpItemKindColor = { fg = colors.subtext0 },
+            CmpItemKindKeyword = { fg = colors.subtext0 },
+            CmpItemKindConstant = { fg = colors.subtext0 },
+
+            --
+            CmpItemAbbr = { fg = colors.text },
+            CmpItemAbbrMatch = { fg = colors.blue, style = {} },
+            CmpItemMenu = { fg = colors.subtext0 },
 
             OilVcsStatusAdded = { fg = colors.green },
             OilVcsStatusCopied = { fg = colors.mauve },
@@ -112,6 +224,10 @@ return {
       },
       color_overrides = {
         macchiato = {
+          dsteal = "#007d67",
+          dssaphire = "#0061dd",
+          dsorange = "#b34b1c",
+          dspurple = "#6f11b7",
           rosewater = "#F5B8AB",
           flamingo = "#F29D9D",
           pink = "#d2a6ff",
