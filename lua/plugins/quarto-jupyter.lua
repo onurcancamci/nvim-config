@@ -37,6 +37,7 @@ return {
     -- like ipython, R, bash
     "jpalardy/vim-slime",
     dev = false,
+    enabled = false,
     init = function()
       vim.b["quarto_is_python_chunk"] = false
       Quarto_is_in_python_chunk = function()
@@ -94,6 +95,7 @@ return {
 
   { -- paste an image from the clipboard or drag-and-drop
     "HakonHarnes/img-clip.nvim",
+    enabled = false,
     event = "BufEnter",
     ft = { "markdown", "quarto", "latex" },
     opts = {

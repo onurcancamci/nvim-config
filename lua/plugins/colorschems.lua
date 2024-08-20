@@ -83,6 +83,7 @@ return {
             Float = { fg = colors.pink },
             ["@property"] = { fg = colors.subtext1 },
             ["@parameter"] = { fg = colors.pink },
+            ["@variable.parameter"] = { fg = colors.pink },
             ["@keyword.export"] = { link = "Import" },
             ["@lsp.type.interface"] = { fg = colors.maroon },
             ["@lsp.type.enum"] = { fg = colors.maroon },
@@ -91,6 +92,7 @@ return {
             ["@tag.tsx"] = { fg = colors.sky },
             ["Constant"] = { fg = colors.lavender },
             ["@constant.builtin"] = { fg = colors.pink },
+            -- MatchParen = { bg = colors.base, fg = colors.blue },
 
             TelescopePromptBorder = { fg = colors.mauve },
             TelescopePromptTitle = { fg = colors.mauve },

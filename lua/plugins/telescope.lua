@@ -42,6 +42,11 @@ return {
       end
 
       require("telescope").setup({
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+        },
         extensions = {
           fzf = {
             fuzzy = true, -- false will only do exact matching
@@ -56,8 +61,6 @@ return {
           },
         },
         defaults = {
-          -- Default configuration for telescope goes here:
-          -- config_key = value,
           file_ignore_patterns = {
             "node_modules",
             "**/*.bak",
@@ -68,6 +71,7 @@ return {
             "**/*.js.map",
             "**/*.ts.map",
             "bin/cli",
+            ".git/",
           },
           vimgrep_arguments = {
             "rg",

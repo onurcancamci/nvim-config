@@ -64,7 +64,7 @@ end
 vim.keymap.set(
   "n",
   "<leader>hd",
-  ":call v:lua.toggle_diagnostics()<CR>",
+  "<cmd>call v:lua.toggle_diagnostics()<CR>",
   { silent = true, noremap = true }
 )
 

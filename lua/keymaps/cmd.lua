@@ -1,1 +1,1 @@
-vim.keymap.set("n", "<leader>vb", ":! pnpm run build<CR>")
+vim.keymap.set("n", "<leader>vb", "<cmd>! pnpm run build<CR>")

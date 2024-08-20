@@ -21,55 +21,55 @@ dashboard.section.buttons.val = {
   dashboard.button(
     "c",
     "  Configuration",
-    ":cd ~/.config/nvim<CR>:so save.vim<CR>"
+    "<cmd>cd ~/.config/nvim<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p1",
     "󰊖  Game Lib",
-    ":cd ~/Code/game-lib<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/game-lib<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p2",
     "  Server Lib",
-    ":cd ~/Code/server-lib<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/server-lib<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p3",
     "  Game Template",
-    ":cd ~/Code/game-template<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/game-template<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p4",
     "  Ping Tool",
-    ":cd ~/Code/ping-tool<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/ping-tool<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p5",
     "  Simple Incremental",
-    ":cd ~/Code/Idle/simple-incremental-1<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/Idle/simple-incremental-1<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p6",
     "󰉛  Food Assistant",
-    ":cd ~/Code/Misc/yemek-oneri<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/Misc/yemek-oneri<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p7",
     "󰢷  Barutcu",
-    ":cd ~/Code/Medex/barutcu<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/Medex/barutcu<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p8",
     "  Medex Lisans",
-    ":cd ~/Code/Medex/firat-lisans<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/Medex/firat-lisans<CR>:so save.vim<CR>"
   ),
   dashboard.button(
     "p9",
     "󰑔  Remote App",
-    ":cd ~/Code/Medex/remote<CR>:so save.vim<CR>"
+    "<cmd>cd ~/Code/Medex/remote<CR>:so save.vim<CR>"
   ),
 
-  dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+  dashboard.button("q", "  Quit Neovim", "<cmd>qa<CR>"),
 }
 
 local function footer()

@@ -1,5 +1,5 @@
 -- 	Maximum number of items to show in the popup menu
-vim.opt.pumheight = 20
+vim.opt.pumheight = 12
 
 -- Left Column
 vim.opt.nu = true

@@ -24,3 +24,8 @@ za  -- toggles fold
 
 -------
 go definition on new split CTRL-W_]
+
+-------
+<C-o> / <C-i> -- o goes back to previous buffer on that pane, i next
+              -- use for doing go definition and back
+              -- use for do a quick fix on a file and go back

@@ -29,6 +29,14 @@ function M.keymaps(client, bufnr)
       severity = { vim.diagnostic.severity.ERROR },
     })
   end, opts)
+
+  if client.server_capabilities.signatureHelpProvider then
+    require("lsp-overloads").setup(client, {
+      display_automatically = false,
+    })
+    vim.keymap.set("n", "gS", "<cmd>LspOverloadsSignature<CR>", opts)
+    vim.keymap.set("i", "<C-s>", "<cmd>LspOverloadsSignature<CR>", opts)
+  end
 end
 
 vim.keymap.del("n", "grn")
