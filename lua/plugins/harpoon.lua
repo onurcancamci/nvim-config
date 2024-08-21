@@ -19,22 +19,10 @@ return {
         local val, idx = harpoon:list():get_by_value(fname)
         if idx == nil then
           harpoon:list():add()
-          require("notify")("Added", "INFO", {
-            render = "compact",
-            animate = false,
-            hide_from_history = true,
-            timeout = 700,
-            title = "Harpoon",
-          })
+          print("Added")
         else
           harpoon:list():remove_at(idx)
-          require("notify")("Removed", "INFO", {
-            render = "compact",
-            animate = false,
-            hide_from_history = true,
-            timeout = 700,
-            title = "Harpoon",
-          })
+          print("Removed")
         end
       end)
       vim.keymap.set("n", "<leader>e", function()

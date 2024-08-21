@@ -55,22 +55,22 @@ return {
             enable = true,
             set_jumps = true, -- you can change this if you want.
             goto_next_start = {
-              ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
+              -- ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
               ["]f"] = {
                 query = "@function.outer",
                 desc = "next function",
               },
             },
-            -- goto_previous_start = {
-            --   ["[b"] = {
-            --     query = "@code_cell.inner",
-            --     desc = "previous code block",
-            --   },
-            --   ["[f"] = {
-            --     query = "@function.outer",
-            --     desc = "previous function",
-            --   },
-            -- },
+            goto_previous_start = {
+              -- ["[b"] = {
+              --   query = "@code_cell.inner",
+              --   desc = "previous code block",
+              -- },
+              ["[f"] = {
+                query = "@function.outer",
+                desc = "previous function",
+              },
+            },
           },
           select = {
             enable = true,

@@ -1,6 +1,7 @@
 local M = {}
 
-function M.keymaps(client, bufnr)
+function M.keymaps(args)
+  local bufnr = args.buf
   local opts = { buffer = bufnr }
   local telescope = require("telescope.builtin")
 
@@ -29,22 +30,14 @@ function M.keymaps(client, bufnr)
       severity = { vim.diagnostic.severity.ERROR },
     })
   end, opts)
+end
 
-  if client.server_capabilities.signatureHelpProvider then
-    require("lsp-overloads").setup(client, {
-      display_automatically = false,
-    })
-    vim.keymap.set("n", "gS", "<cmd>LspOverloadsSignature<CR>", opts)
-    vim.keymap.set("i", "<C-s>", "<cmd>LspOverloadsSignature<CR>", opts)
-  end
+M.defineLspOverloads = function()
+  vim.keymap.set("n", "gS", "<cmd>LspOverloadsSignature<CR>")
+  vim.keymap.set("i", "<C-s>", "<cmd>LspOverloadsSignature<CR>")
 end
 
 vim.keymap.del("n", "grn")
 vim.keymap.del({ "v", "n" }, "gra")
 vim.keymap.del("n", "grr")
 return M
-
--- vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
--- vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
--- vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
--- vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)

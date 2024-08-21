@@ -10,6 +10,9 @@ return {
       local custom_catpuccin = require("lualine.themes.catppuccin-macchiato")
       custom_catpuccin.visual.a.bg = "#AD6FF7"
       custom_catpuccin.visual.b.fg = "#AD6FF7"
+      custom_catpuccin.terminal.a.bg = "#E66767"
+      custom_catpuccin.terminal.b.fg = "#E66767"
+
       theme = custom_catpuccin
     end
 

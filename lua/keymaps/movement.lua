@@ -2,9 +2,9 @@
 -- vim.keymap.set("n", "<C-f>", "<C-u>zz", { noremap = true })
 -- vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 
-vim.keymap.set("n", "<C-d>", "15j", { noremap = true })
-vim.keymap.set("n", "<C-f>", "15k", { noremap = true })
-vim.keymap.set("n", "<C-u>", "15k", { noremap = true })
+vim.keymap.set("n", "<C-d>", "10j", { noremap = true })
+vim.keymap.set("n", "<C-f>", "10k", { noremap = true })
+vim.keymap.set("n", "<C-u>", "10k", { noremap = true })
 
 -- center after search
 vim.keymap.set("n", "n", "nzzzv")

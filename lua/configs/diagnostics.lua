@@ -42,9 +42,11 @@ local hidden_diagnostics = {
   },
 }
 
--- vim.diagnostic.config({
---   virtual_text = false,
--- })
+vim.api.nvim_set_hl(0, "DiagnosticLineNrError", { link = "DiagnosticError" })
+vim.api.nvim_set_hl(0, "DiagnosticLineNrWarn", { link = "DiagnosticWarn" })
+vim.api.nvim_set_hl(0, "DiagnosticLineNrInfo", { link = "DiagnosticInfo" })
+vim.api.nvim_set_hl(0, "DiagnosticLineNrHint", { link = "DiagnosticHint" })
+
 vim.diagnostic.config(default_diagnostics)
 
 vim.g.diagnostics_visible = true
@@ -67,17 +69,3 @@ vim.keymap.set(
   "<cmd>call v:lua.toggle_diagnostics()<CR>",
   { silent = true, noremap = true }
 )
-
--- Retrieve key colors from tokyonight
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    vim.cmd([[
-      highlight! link DiagnosticLineNrError DiagnosticError
-      highlight! link DiagnosticLineNrWarn DiagnosticWarn
-      highlight! link DiagnosticLineNrInfo DiagnosticInfo
-      highlight! link DiagnosticLineNrHint DiagnosticHint
-    ]])
-  end,
-})

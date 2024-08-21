@@ -1,6 +1,19 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "MattiasMTS/cmp-dbee",
+        dependencies = {
+          { "kndndrj/nvim-dbee" },
+        },
+        ft = "sql", -- optional but good to have
+        opts = {}, -- needed
+      },
+      { "hrsh7th/cmp-calc" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "Issafalcon/lsp-overloads.nvim" },
+    },
     config = function()
       local cmp = require("cmp")
 
@@ -49,6 +62,7 @@ return {
         sources = {
           -- { name = "calc" },
           { name = "nvim_lsp" },
+          { "cmp-dbee" },
           -- { name = "luasnip" },
         },
         snippet = {
@@ -159,7 +173,4 @@ return {
       })
     end,
   },
-  { "hrsh7th/cmp-calc" },
-  { "saadparwaiz1/cmp_luasnip" },
-  { "Issafalcon/lsp-overloads.nvim" },
 }

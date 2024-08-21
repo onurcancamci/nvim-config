@@ -87,6 +87,16 @@ return {
           mappings = {
             i = {
               ["<C-h>"] = "which_key",
+              ["<c-d>"] = function(arg)
+                vim.api.nvim_command("wall")
+                require("telescope.actions").delete_buffer(arg)
+              end,
+              ["<C-S-d>"] = function(arg)
+                require("telescope.actions").delete_buffer(arg)
+              end,
+              ["<C-j>"] = require("telescope.actions").preview_scrolling_down,
+              ["<C-k>"] = require("telescope.actions").preview_scrolling_up,
+
               ["<C-e>"] = function(arg1)
                 local selection =
                   require("telescope.actions.state").get_selected_entry()
@@ -97,22 +107,10 @@ return {
 
                 if idx == nil then
                   harpoon:list():add(item)
-                  require("notify")("Added", "INFO", {
-                    render = "compact",
-                    animate = false,
-                    hide_from_history = true,
-                    timeout = 700,
-                    title = "Harpoon",
-                  })
+                  print("Added")
                 else
                   harpoon:list():remove(item)
-                  require("notify")("Removed", "INFO", {
-                    render = "compact",
-                    animate = false,
-                    hide_from_history = true,
-                    timeout = 700,
-                    title = "Harpoon",
-                  })
+                  print("Removed")
                 end
               end,
               ["<C-v>"] = require("telescope.actions").send_selected_to_qflist,
@@ -121,6 +119,9 @@ return {
             n = {
               ["<c-d>"] = function(arg)
                 vim.api.nvim_command("wall")
+                require("telescope.actions").delete_buffer(arg)
+              end,
+              ["<C-S-d>"] = function(arg)
                 require("telescope.actions").delete_buffer(arg)
               end,
               ["<C-e>"] = function(arg1)
@@ -133,22 +134,10 @@ return {
 
                 if idx == nil then
                   harpoon:list():add(item)
-                  require("notify")("Added", "INFO", {
-                    render = "compact",
-                    animate = false,
-                    hide_from_history = true,
-                    timeout = 700,
-                    title = "Harpoon",
-                  })
+                  print("Added")
                 else
                   harpoon:list():remove(item)
-                  require("notify")("Removed", "INFO", {
-                    render = "compact",
-                    animate = false,
-                    hide_from_history = true,
-                    timeout = 700,
-                    title = "Harpoon",
-                  })
+                  print("Removed")
                 end
               end,
               ["<C-v>"] = require("telescope.actions").send_selected_to_qflist,
@@ -158,7 +147,7 @@ return {
       })
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("dir")
-      require("telescope").load_extension("media_files")
+      -- require("telescope").load_extension("media_files")
     end,
   },
   {
@@ -178,7 +167,7 @@ return {
       })
     end,
   },
-  {
-    "nvim-telescope/telescope-media-files.nvim",
-  },
+  -- {
+  --   "nvim-telescope/telescope-media-files.nvim",
+  -- },
 }
