@@ -24,6 +24,7 @@ return {
             require("lsp-overloads").setup(client, {
               display_automatically = false,
             })
+            -- client.server_capabilities.semanticTokensProvider = nil
             lspk.defineLspOverloads()
           end
         end,

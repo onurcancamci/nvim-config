@@ -14,9 +14,11 @@ vim.keymap.set("n", "<leader>pE", function()
 end)
 vim.keymap.set("n", "<leader>pe", "<cmd>Oil --float <CR>", {})
 vim.keymap.set("n", "<leader>pg", telescope.live_grep, {})
+vim.keymap.set("n", "<leader>pG", telescope.grep_string, {})
 vim.keymap.set("n", "<leader>pr", telescope.resume, {})
 vim.keymap.set("n", "<leader>pb", telescope.buffers, {})
 vim.keymap.set("n", "<leader>pd", telescope.diagnostics, {})
+vim.keymap.set("n", "<leader>pc", telescope.git_status, {})
 vim.keymap.set(
   "n",
   "<leader>pf",

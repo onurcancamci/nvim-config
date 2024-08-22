@@ -10,8 +10,8 @@ return {
         ft = "sql", -- optional but good to have
         opts = {}, -- needed
       },
-      { "hrsh7th/cmp-calc" },
-      { "saadparwaiz1/cmp_luasnip" },
+      -- { "hrsh7th/cmp-calc" },
+      -- { "saadparwaiz1/cmp_luasnip" },
       { "Issafalcon/lsp-overloads.nvim" },
     },
     config = function()
@@ -68,6 +68,7 @@ return {
         snippet = {
           expand = function(args)
             vim.snippet.expand(args.body)
+            vim.snippet.stop()
           end,
         },
         mapping = cmp.mapping.preset.insert({
