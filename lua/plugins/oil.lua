@@ -58,6 +58,7 @@ return {
     "SirZenith/oil-vcs-status",
     config = function()
       local status_const = require("oil-vcs-status.constant.status")
+      local vcs_hl = require("current-color-scheme").vcs_hl_groups
 
       local StatusType = status_const.StatusType
 
@@ -100,36 +101,33 @@ return {
         },
 
         -- Highlight group name used by each status type.
-        status_hl_group = {
-          [StatusType.Added] = "OilVcsStatusAdded",
-          [StatusType.Copied] = "OilVcsStatusCopied",
-          [StatusType.Deleted] = "OilVcsStatusDeleted",
-          [StatusType.Ignored] = "OilVcsStatusIgnored",
-          [StatusType.Modified] = "OilVcsStatusModified",
-          [StatusType.Renamed] = "OilVcsStatusRenamed",
-          [StatusType.TypeChanged] = "OilVcsStatusTypeChanged",
-          [StatusType.Unmodified] = "OilVcsStatusUnmodified",
-          [StatusType.Unmerged] = "OilVcsStatusUnmerged",
-          [StatusType.Untracked] = "OilVcsStatusUntracked",
-          [StatusType.External] = "OilVcsStatusExternal",
 
-          [StatusType.UpstreamAdded] = "OilVcsStatusUpstreamAdded",
-          [StatusType.UpstreamCopied] = "OilVcsStatusUpstreamCopied",
-          [StatusType.UpstreamDeleted] = "OilVcsStatusUpstreamDeleted",
-          [StatusType.UpstreamIgnored] = "OilVcsStatusUpstreamIgnored",
-          [StatusType.UpstreamModified] = "OilVcsStatusUpstreamModified",
-          [StatusType.UpstreamRenamed] = "OilVcsStatusUpstreamRenamed",
-          [StatusType.UpstreamTypeChanged] = "OilVcsStatusUpstreamTypeChanged",
-          [StatusType.UpstreamUnmodified] = "OilVcsStatusUpstreamUnmodified",
-          [StatusType.UpstreamUnmerged] = "OilVcsStatusUpstreamUnmerged",
-          [StatusType.UpstreamUntracked] = "OilVcsStatusUpstreamUntracked",
-          [StatusType.UpstreamExternal] = "OilVcsStatusUpstreamExternal",
+        status_hl_group = {
+          [StatusType.Added] = vcs_hl.added,
+          [StatusType.Copied] = vcs_hl.modified,
+          [StatusType.Deleted] = vcs_hl.deleted,
+          [StatusType.Ignored] = vcs_hl.ignored,
+          [StatusType.Modified] = vcs_hl.modified,
+          [StatusType.Renamed] = vcs_hl.modified,
+          [StatusType.TypeChanged] = vcs_hl.modified,
+          [StatusType.Unmodified] = vcs_hl.ignored,
+          [StatusType.Unmerged] = vcs_hl.modified,
+          [StatusType.Untracked] = vcs_hl.untracked,
+          [StatusType.External] = vcs_hl.ignored,
+
+          [StatusType.UpstreamAdded] = vcs_hl.added,
+          [StatusType.UpstreamCopied] = vcs_hl.modified,
+          [StatusType.UpstreamDeleted] = vcs_hl.deleted,
+          [StatusType.UpstreamIgnored] = vcs_hl.ignored,
+          [StatusType.UpstreamModified] = vcs_hl.modified,
+          [StatusType.UpstreamRenamed] = vcs_hl.modified,
+          [StatusType.UpstreamTypeChanged] = vcs_hl.modified,
+          [StatusType.UpstreamUnmodified] = vcs_hl.ignored,
+          [StatusType.UpstreamUnmerged] = vcs_hl.modified,
+          [StatusType.UpstreamUntracked] = vcs_hl.untracked,
+          [StatusType.UpstreamExternal] = vcs_hl.ignored,
         },
 
-        -- Sign priority of each staus. When sign column width is less then staus
-        -- symbol number, symbol with higher priority will be shown.
-        -- If signcolumn is wide enough, signs will be display from left to right in
-        -- order of priority from low to high.
         status_priority = {
           [StatusType.UpstreamIgnored] = 10,
           [StatusType.Ignored] = 10,
@@ -165,10 +163,6 @@ return {
 
         vcs_specific = {
           git = {
-            -- `git status` command triggers file system event when it finished.
-            -- Plugin will ignore file system event in this amount of time, after
-            -- `git status` finishes its executation. Unit: milisecond.
-            ---@type integer
             status_update_debounce = 200,
           },
         },

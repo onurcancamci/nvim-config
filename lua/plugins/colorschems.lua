@@ -17,23 +17,15 @@ return {
         -- Change the "hint" color to the "orange" color, and make the "error" color bright red
         on_colors = function(colors) end,
         on_highlights = function(hl, colors)
-          hl.OilVcsStatusAdded = { fg = colors.green }
-          hl.OilVcsStatusCopied = { fg = colors.orange }
-          hl.OilVcsStatusDeleted = { fg = colors.red }
-          hl.OilVcsStatusModified = { fg = colors.orange }
-          hl.OilVcsStatusRenamed = { fg = colors.blue }
-          hl.OilVcsStatusTypeChanged = { fg = colors.blue }
-          hl.OilVcsStatusUnmerged = { fg = colors.red }
-          hl.OilVcsStatusUntracked = { fg = colors.purple }
+          local current_cs = require("current-color-scheme")
+          local vcs_hl = current_cs.vcs_hl_groups
 
-          hl.OilVcsStatusUpstreamAdded = { fg = colors.green }
-          hl.OilVcsStatusUpstreamCopied = { fg = colors.orange }
-          hl.OilVcsStatusUpstreamDeleted = { fg = colors.red }
-          hl.OilVcsStatusUpstreamModified = { fg = colors.orange }
-          hl.OilVcsStatusUpstreamRenamed = { fg = colors.blue }
-          hl.OilVcsStatusUpstreamTypeChanged = { fg = colors.blue }
-          hl.OilVcsStatusUpstreamUnmerged = { fg = colors.red }
-          hl.OilVcsStatusUpstreamUntracked = { fg = colors.purple }
+          hl[vcs_hl.added] = { fg = colors.green }
+          hl[vcs_hl.deleted] = { fg = colors.red }
+          hl[vcs_hl.ignored] = { link = "@comment" }
+          hl[vcs_hl.modified] = { fg = colors.orange }
+          hl[vcs_hl.untracked] = { fg = colors.purple }
+
           hl.ColorColumn = { bg = "#28213c" }
           hl.WinSeperator = { fg = "#000000", bg = "#000000" }
           hl.LineNr = { fg = colors.orange }
@@ -47,38 +39,38 @@ return {
     priority = 1000,
     opts = {
       highlight_overrides = {
-        all = function(colors)
+        macchiato = function(colors)
           return {
-            CurSearch = { bg = colors.mauve },
-            IncSearch = { bg = colors.mauve },
-            Search = { fg = colors.text, bg = "#254059" },
-            -- CursorLineNr = { fg = colors.blue, style = { "bold" } },
-            DashboardFooter = { fg = colors.overlay0 },
-            TreesitterContextBottom = { style = {} },
-            Conditional = { style = {} },
-
-            ["@markup.italic"] = { fg = colors.blue },
-            ["@markup.strong"] = { fg = colors.blue, style = { "bold" } },
-            Headline = { style = { "bold" } },
-            Headline1 = { fg = colors.blue, style = { "bold" } },
-            Headline2 = { fg = colors.pink, style = { "bold" } },
-            Headline3 = { fg = colors.lavender, style = { "bold" } },
-            Headline4 = { fg = colors.green, style = { "bold" } },
-            Headline5 = { fg = colors.peach, style = { "bold" } },
-            Headline6 = { fg = colors.flamingo, style = { "bold" } },
-            rainbow1 = { fg = colors.blue, style = { "bold" } },
-            rainbow2 = { fg = colors.pink, style = { "bold" } },
-            rainbow3 = { fg = colors.lavender, style = { "bold" } },
-            rainbow4 = { fg = colors.green, style = { "bold" } },
-            rainbow5 = { fg = colors.peach, style = { "bold" } },
-            rainbow6 = { fg = colors.flamingo, style = { "bold" } },
-
-            LineNrBelow = { fg = "#2f313d" },
-            LineNrAbove = { fg = "#2f313d" },
-            LineNr = { fg = colors.blue, style = { "bold" } },
+            Search = { fg = colors.text, bg = colors.overlay1 },
             WinSeparator = { fg = "#000000", bg = "#000000" },
             ColorColumn = { bg = "#0f0f17" },
             ["@tag.attribute.tsx"] = { fg = colors.lorange, style = {} },
+            TelescopePromptBorder = { fg = colors.mauve },
+            TelescopePromptTitle = { fg = colors.mauve },
+          }
+        end,
+        latte = function(colors)
+          return {
+            Search = { fg = colors.text, bg = colors.overlay0 },
+            WinSeparator = { fg = "#b6b7bf", bg = "#b6b7bf" },
+            ColorColumn = { bg = "#dfe0e6" },
+            ["@tag.attribute.tsx"] = { fg = colors.green, style = {} },
+            TelescopePromptBorder = { fg = colors.red },
+            TelescopePromptTitle = { fg = colors.red },
+            TabLineSel = { fg = colors.green, bg = colors.surface0 },
+          }
+        end,
+        all = function(colors)
+          local current_cs = require("current-color-scheme")
+          local vcs_hl = current_cs.vcs_hl_groups
+
+          return {
+            CurSearch = { bg = colors.mauve },
+            IncSearch = { bg = colors.mauve },
+            LineNrBelow = { fg = colors.surface1 },
+            LineNrAbove = { fg = colors.surface1 },
+            LineNr = { fg = colors.blue, style = { "bold" } },
+
             Boolean = { fg = colors.pink },
             Number = { fg = colors.pink },
             Float = { fg = colors.pink },
@@ -93,70 +85,18 @@ return {
             ["@tag.tsx"] = { fg = colors.sky },
             ["Constant"] = { fg = colors.lavender },
             ["@constant.builtin"] = { fg = colors.pink },
-            -- MatchParen = { bg = colors.base, fg = colors.blue },
 
-            TelescopePromptBorder = { fg = colors.mauve },
-            TelescopePromptTitle = { fg = colors.mauve },
+            TabLine = { fg = colors.subtext1 },
 
-            CmpItemKind = { bg = colors.surface2, fg = colors.text },
-
-            CmpItemKindText = { fg = colors.subtext0 },
-            CmpItemKindSnippet = { fg = colors.subtext0 },
-            CmpItemKindOperator = { fg = colors.subtext0 },
-
-            CmpItemKindFunction = { fg = colors.subtext0 },
-            CmpItemKindMethod = { fg = colors.subtext0 },
-            CmpItemKindConstructor = { fg = colors.subtext0 },
-            CmpItemKindEvent = { fg = colors.subtext0 },
-
-            CmpItemKindField = { fg = colors.subtext0 },
-            CmpItemKindProperty = { fg = colors.subtext0 },
-            CmpItemKindEnumMember = { fg = colors.subtext0 },
-            CmpItemKindVariable = { fg = colors.subtext0 },
-
-            CmpItemKindClass = { fg = colors.subtext0 },
-            CmpItemKindModule = { fg = colors.subtext0 },
-            CmpItemKindFile = { fg = colors.subtext0 },
-            CmpItemKindFolder = { fg = colors.subtext0 },
-            CmpItemKindReference = { fg = colors.subtext0 },
-            CmpItemKindStruct = { fg = colors.subtext0 },
-
-            CmpItemKindInterface = { fg = colors.subtext0 },
-            CmpItemKindEnum = { fg = colors.subtext0 },
-            CmpItemKindTypeParameter = {
-
-              fg = colors.subtext0,
-            },
-
-            CmpItemKindUnit = { fg = colors.subtext0 },
-            CmpItemKindValue = { fg = colors.subtext0 },
-            CmpItemKindColor = { fg = colors.subtext0 },
-            CmpItemKindKeyword = { fg = colors.subtext0 },
-            CmpItemKindConstant = { fg = colors.subtext0 },
-
-            --
             CmpItemAbbr = { fg = colors.text },
-            CmpItemAbbrMatch = { fg = colors.blue, style = {} },
+            CmpItemAbbrMatch = { fg = colors.blue },
             CmpItemMenu = { fg = colors.subtext0 },
 
-            OilVcsStatusAdded = { fg = colors.green },
-            OilVcsStatusCopied = { fg = colors.mauve },
-            OilVcsStatusDeleted = { fg = colors.red },
-            OilVcsStatusModified = { fg = colors.mauve },
-            OilVcsStatusRenamed = { fg = colors.blue },
-            OilVcsStatusTypeChanged = { fg = colors.blue },
-            OilVcsStatusUnmerged = { fg = colors.red },
-            OilVcsStatusUntracked = { fg = colors.pink },
-
-            OilVcsStatusUpstreamAdded = { fg = colors.green },
-            OilVcsStatusUpstreamCopied = { fg = colors.mauve },
-            OilVcsStatusUpstreamDeleted = { fg = colors.red },
-            OilVcsStatusUpstreamModified = { fg = colors.mauve },
-            OilVcsStatusUpstreamRenamed = { fg = colors.blue },
-            OilVcsStatusUpstreamTypeChanged = { fg = colors.blue },
-            OilVcsStatusUpstreamUnmerged = { fg = colors.red },
-            OilVcsStatusUpstreamUntracked = { fg = colors.pink },
-            OilVcsStatusUpstreamUnmodified = {},
+            [vcs_hl.added] = { fg = colors.green },
+            [vcs_hl.deleted] = { fg = colors.red },
+            [vcs_hl.ignored] = { fg = colors.subtext0 },
+            [vcs_hl.modified] = { fg = colors.mauve },
+            [vcs_hl.untracked] = { fg = colors.pink },
           }
         end,
       },
