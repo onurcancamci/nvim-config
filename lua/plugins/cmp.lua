@@ -10,8 +10,6 @@ return {
         ft = "sql", -- optional but good to have
         opts = {}, -- needed
       },
-      -- { "hrsh7th/cmp-calc" },
-      -- { "saadparwaiz1/cmp_luasnip" },
       { "Issafalcon/lsp-overloads.nvim" },
     },
     config = function()
@@ -60,10 +58,8 @@ return {
 
       cmp.setup({
         sources = {
-          -- { name = "calc" },
           { name = "nvim_lsp" },
           { "cmp-dbee" },
-          -- { name = "luasnip" },
         },
         snippet = {
           expand = function(args)
@@ -75,9 +71,9 @@ return {
           ["<C-f>"] = cmp.mapping.scroll_docs(-4),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
 
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
           ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
           ["<C-Space>"] = cmp.mapping.complete(),
@@ -135,9 +131,6 @@ return {
                   return completion.labelDetails.description
                 end
               elseif source_name == "gopls" then
-                -- And this, for the record, is how I inspect payloads
-                -- require("ditsuke.utils").logger("completion source: ", completion) -- Lazy-serialization of heavy payloads
-                -- require("ditsuke.utils").logger("completion detail added to gopls")
                 return completion.detail
               end
             end
@@ -170,6 +163,7 @@ return {
       cmp.setup.filetype({ "sql" }, {
         sources = {
           -- { name = "vim-dadbod-completion" },
+          { name = "nvim_lsp" },
           { name = "cmp-dbee" },
           { name = "buffer" },
         },

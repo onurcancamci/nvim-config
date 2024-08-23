@@ -29,6 +29,9 @@ return {
           end
         end,
       })
+      lsp.sqlls.setup({
+        capabilities = cap,
+      })
       lsp.lua_ls.setup({
         capabilities = cap,
       })

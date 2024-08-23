@@ -58,6 +58,7 @@ return {
             TelescopePromptBorder = { fg = colors.red },
             TelescopePromptTitle = { fg = colors.red },
             TabLineSel = { fg = colors.green, bg = colors.surface0 },
+            NeogitDiffContextCursor = { bg = colors.surface0 },
           }
         end,
         all = function(colors)
