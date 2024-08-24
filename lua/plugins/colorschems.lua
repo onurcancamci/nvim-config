@@ -64,7 +64,6 @@ return {
         all = function(colors)
           local current_cs = require("current-color-scheme")
           local vcs_hl = current_cs.vcs_hl_groups
-
           return {
             CurSearch = { bg = colors.mauve },
             IncSearch = { bg = colors.mauve },

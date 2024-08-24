@@ -11,6 +11,7 @@ vim.keymap.set("n", "<leader>pE", function()
   require("oil").open()
   vim.cmd("vertical resize 40")
   vim.cmd("set wfw")
+  -- vim.cmd("set wfb")
 end)
 vim.keymap.set("n", "<leader>pe", "<cmd>Oil --float <CR>", {})
 vim.keymap.set("n", "<leader>pg", telescope.live_grep, {})
@@ -30,7 +31,7 @@ vim.keymap.set("n", "<leader>pqf", telescope.quickfix, {}) -- project quick fix
 -- vim.keymap.set("n", "<C-p>", builtin.git_files, {})
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 vim.keymap.set("n", "<leader>ps", function()
-  telescope.lsp_document_symbols({
+  telescope.lsp_workspace_symbols({
     symbols = { "function", "class", "method", "interface", "enum", "struct" },
   })
 end)
@@ -42,3 +43,8 @@ end, { nargs = 1 })
 vim.keymap.set("v", "<leader>pg", '"zy<cmd>Search <C-r>z<CR>')
 vim.keymap.set("n", "<leader>p?", "<cmd>Telescope keymaps<CR>")
 vim.keymap.set("n", "<leader>ph", "<cmd>Telescope highlights<CR>")
+
+vim.keymap.set("n", "[q", "<cmd>cprev<CR>")
+vim.keymap.set("n", "]q", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<leader>cc", "<cmd>cclose<CR>")
+vim.keymap.set("n", "<leader>co", "<cmd>copen<CR>")

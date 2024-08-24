@@ -55,17 +55,12 @@ return {
             enable = true,
             set_jumps = true, -- you can change this if you want.
             goto_next_start = {
-              -- ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
               ["]f"] = {
                 query = "@function.outer",
                 desc = "next function",
               },
             },
             goto_previous_start = {
-              -- ["[b"] = {
-              --   query = "@code_cell.inner",
-              --   desc = "previous code block",
-              -- },
               ["[f"] = {
                 query = "@function.outer",
                 desc = "previous function",
@@ -76,9 +71,6 @@ return {
             enable = true,
             lookahead = true, -- you can change this if you want
             keymaps = {
-              --- ... other keymaps
-              -- ["ib"] = { query = "@code_cell.inner", desc = "in block" },
-              -- ["ab"] = { query = "@code_cell.outer", desc = "around block" },
               ["if"] = {
                 query = "@function.inner",
                 desc = "in function",
@@ -96,7 +88,7 @@ return {
             init_selection = "<C-space>",
             node_incremental = "<C-space>",
             scope_incremental = false,
-            node_decremental = "<bs>",
+            node_decremental = "<C-s>",
           },
         },
       })
@@ -104,8 +96,6 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    -- after = "nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    -- init = function() end,
   },
 }

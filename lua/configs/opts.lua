@@ -30,7 +30,7 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
 vim.o.foldlevelstart = 99
-vim.opt.foldnestmax = 3
+-- vim.opt.foldnestmax = 3
 vim.opt.foldminlines = 4
 vim.opt.foldtext = ""
 
@@ -39,11 +39,11 @@ vim.opt.wrap = false
 vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 4
 vim.opt.cursorline = false
-vim.opt.splitbelow = true
 
 -- Annoyance Fixes
 vim.o.timeout = false
 vim.opt.splitright = true
+vim.opt.splitbelow = true
 vim.opt.clipboard = "unnamed"
 
 vim.g.python3_host_prog = "/Users/onurcan/.pyenv/shims/python"

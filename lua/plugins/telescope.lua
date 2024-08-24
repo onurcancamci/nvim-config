@@ -1,3 +1,12 @@
+---@type any
+local bcmd =
+  "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
+local env = require("env-config")
+
+if env.use_binary_extensions == false then
+  bcmd = false
+end
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -152,7 +161,7 @@ return {
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
-    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+    build = bcmd,
   },
   {
     "princejoogie/dir-telescope.nvim",

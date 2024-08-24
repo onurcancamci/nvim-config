@@ -14,4 +14,44 @@ M.vcs_hl_groups = {
   untracked = "VcsUntracked",
 }
 
+M.kind_icons = {
+  -- gray
+  Text = "  ",
+
+  -- blue
+  Method = " 󰆧 ",
+  Function = " 󰊕 ",
+  Constructor = "  ",
+  Event = "  ",
+
+  -- teal
+  Field = " 󰇽 ",
+  Property = " 󰜢 ",
+  EnumMember = "  ",
+  Variable = " 󰂡 ",
+
+  -- orange
+  Class = " 󰠱 ",
+  Module = "  ",
+  File = " 󰈙 ",
+  Folder = " 󰉋 ",
+  Reference = "  ",
+  Struct = "  ",
+
+  -- pink
+  Interface = "  ",
+  Enum = "  ",
+  TypeParameter = " 󰅲 ",
+
+  -- purple
+  Unit = "  ",
+  Value = " 󰎠 ",
+  Color = " 󰏘 ",
+  Keyword = " 󰌋 ",
+  Constant = " 󰏿 ",
+
+  Snippet = "  ",
+  Operator = " 󰆕 ",
+}
+
 return M

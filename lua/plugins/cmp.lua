@@ -14,47 +14,9 @@ return {
     },
     config = function()
       local cmp = require("cmp")
+      local my_cs = require("current-color-scheme")
 
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
-      local kind_icons = {
-        -- gray
-        Text = "  ",
-
-        -- blue
-        Method = " 󰆧 ",
-        Function = " 󰊕 ",
-        Constructor = "  ",
-        Event = "  ",
-
-        -- teal
-        Field = " 󰇽 ",
-        Property = " 󰜢 ",
-        EnumMember = "  ",
-        Variable = " 󰂡 ",
-
-        -- orange
-        Class = " 󰠱 ",
-        Module = "  ",
-        File = " 󰈙 ",
-        Folder = " 󰉋 ",
-        Reference = "  ",
-        Struct = "  ",
-
-        -- pink
-        Interface = "  ",
-        Enum = "  ",
-        TypeParameter = " 󰅲 ",
-
-        -- purple
-        Unit = "  ",
-        Value = " 󰎠 ",
-        Color = " 󰏘 ",
-        Keyword = " 󰌋 ",
-        Constant = " 󰏿 ",
-
-        Snippet = "  ",
-        Operator = " 󰆕 ",
-      }
 
       cmp.setup({
         sources = {
@@ -135,7 +97,7 @@ return {
               end
             end
 
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
+            vim_item.kind = string.format("%s", my_cs.kind_icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
 
             local source_names = {
               nvim_lsp = "[LSP]",
