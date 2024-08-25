@@ -24,6 +24,7 @@ vim.o.sessionoptions =
   "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+vim.opt.backup = false
 
 -- Fold
 vim.opt.foldmethod = "expr"
@@ -45,6 +46,11 @@ vim.o.timeout = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.clipboard = "unnamed"
+-- vim.opt.formatoptions:remove({ "c", "r", "o" })
 
 vim.g.python3_host_prog = "/Users/onurcan/.pyenv/shims/python"
 vim.g.python2_host_prog = "/Users/onurcan/.pyenv/shims/python"
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0

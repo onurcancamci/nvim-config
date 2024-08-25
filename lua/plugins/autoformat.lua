@@ -15,6 +15,21 @@ return {
           tsx = { "prettierd", "prettier", stop_after_first = true },
           json = { "prettierd", "prettier", stop_after_first = true },
           jsonc = { "prettierd", "prettier", stop_after_first = true },
+          nginx = {
+            "nginx_formatter",
+          },
+        },
+        formatters = {
+          nginx_formatter = {
+            command = "prettier",
+            args = {
+              "--parser",
+              "nginx",
+              "--plugin",
+              "prettier-plugin-nginx",
+              -- "$FILENAME",
+            },
+          },
         },
       })
 

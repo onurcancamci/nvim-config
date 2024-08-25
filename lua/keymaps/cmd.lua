@@ -5,11 +5,3 @@ vim.api.nvim_set_keymap(
   "<cmd>vsplit | term tsc --noEmit<CR>",
   { noremap = true, silent = true }
 )
-
-vim.cmd([[
-  cabbrev bterm <C-c> :botright term
-]])
-
-vim.cmd([[
-  cabbrev vterm <C-c> :vert term
-]])

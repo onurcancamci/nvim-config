@@ -114,6 +114,7 @@ return {
         },
         capabilities = cap,
       })
+      lsp.nginx_language_server.setup({})
     end,
   },
   {

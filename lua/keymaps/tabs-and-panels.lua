@@ -5,6 +5,11 @@ vim.keymap.set("n", "<M-right>", "<C-w>l")
 vim.keymap.set("n", "<M-up>", "<C-w>k")
 vim.keymap.set("n", "<M-down>", "<C-w>j")
 
+vim.keymap.set("t", "<M-left>", "<C-\\><C-n><C-w>h")
+vim.keymap.set("t", "<M-right>", "<C-\\><C-n><C-w>l")
+vim.keymap.set("t", "<M-up>", "<C-\\><C-n><C-w>k")
+vim.keymap.set("t", "<M-down>", "<C-\\><C-n><C-w>j")
+
 -- vim.keymap.set("n", "<leader>bn", "<cmd>bn<CR>")
 -- vim.keymap.set("n", "<leader>bp", "<cmd>bp<CR>")
 vim.keymap.set("n", "<leader>bn", "<cmd>enew<CR>")
