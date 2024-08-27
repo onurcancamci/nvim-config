@@ -20,7 +20,7 @@ vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 
 -- Persistance
-vim.o.sessionoptions =
+vim.opt.sessionoptions =
   "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
@@ -30,7 +30,7 @@ vim.opt.backup = false
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
-vim.o.foldlevelstart = 99
+vim.opt.foldlevelstart = 99
 -- vim.opt.foldnestmax = 3
 vim.opt.foldminlines = 4
 vim.opt.foldtext = ""
@@ -42,7 +42,7 @@ vim.opt.scrolloff = 4
 vim.opt.cursorline = false
 
 -- Annoyance Fixes
-vim.o.timeout = false
+vim.opt.timeout = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.clipboard = "unnamed"

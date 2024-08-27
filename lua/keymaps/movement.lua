@@ -11,3 +11,4 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 -- center after G
 vim.keymap.set({ "n", "v" }, "G", "Gzz")
+vim.keymap.set("n", "\\", ";", { noremap = true })

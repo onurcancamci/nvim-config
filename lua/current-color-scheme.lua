@@ -1,8 +1,8 @@
 local M = {}
 
 -- M.colorscheme = "tokyonight"
-M.colorscheme = "catppuccin-macchiato"
--- M.colorscheme = "catppuccin-latte"
+-- M.colorscheme = "catppuccin-macchiato"
+M.colorscheme = "catppuccin-latte"
 
 M.lualine = M.colorscheme
 

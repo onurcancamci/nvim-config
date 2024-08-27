@@ -27,11 +27,23 @@ return {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
+      {
+        "sindrets/diffview.nvim",
+        config = function()
+          require("diffview").setup({})
+        end,
+      },
 
       "nvim-telescope/telescope.nvim", -- optional
       "ibhagwan/fzf-lua", -- optional
     },
-    config = true,
+    config = function()
+      local neogit = require("neogit")
+      neogit.setup({
+        integrations = {
+          diffview = true,
+        },
+      })
+    end,
   },
 }

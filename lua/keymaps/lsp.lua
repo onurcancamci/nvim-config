@@ -30,6 +30,18 @@ function M.keymaps(args)
       severity = { vim.diagnostic.severity.ERROR },
     })
   end, opts)
+  vim.keymap.set("n", "[D", function()
+    vim.diagnostic.jump({
+      count = -1,
+      float = true,
+    })
+  end, opts)
+  vim.keymap.set("n", "]D", function()
+    vim.diagnostic.jump({
+      count = 1,
+      float = true,
+    })
+  end, opts)
 end
 
 M.defineLspOverloads = function()

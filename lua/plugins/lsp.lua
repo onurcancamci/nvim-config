@@ -115,6 +115,13 @@ return {
         capabilities = cap,
       })
       lsp.nginx_language_server.setup({})
+      lsp.cssls.setup({
+        capabilities = cap,
+        filetypes = { "css", "scss", "less" },
+        {
+          provideFormatter = true,
+        },
+      })
     end,
   },
   {

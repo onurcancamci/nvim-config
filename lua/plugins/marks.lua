@@ -24,6 +24,12 @@ return {
         },
         mappings = {},
       })
+
+      vim.keymap.del("", "m[")
+      vim.keymap.del("", "m]")
+
+      vim.keymap.set("n", "[m", '<cmd>lua require("marks").prev()<CR>')
+      vim.keymap.set("n", "]m", '<cmd>lua require("marks").next()<CR>')
     end,
   },
 }

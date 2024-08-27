@@ -1,5 +1,4 @@
 return {
-  { "Shatur/neovim-ayu" },
   {
     "folke/tokyonight.nvim",
     lazy = false,

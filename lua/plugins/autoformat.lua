@@ -18,6 +18,7 @@ return {
           nginx = {
             "nginx_formatter",
           },
+          css = { "prettierd", "prettier", stop_after_first = true },
         },
         formatters = {
           nginx_formatter = {

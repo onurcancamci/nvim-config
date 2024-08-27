@@ -1,11 +1,16 @@
 return {
-  "norcalli/nvim-colorizer.lua",
+  "NvChad/nvim-colorizer.lua",
 
   config = function()
-    vim.defer_fn(function()
-      require("colorizer").setup({
-        "css",
-      }, { mode = "background" })
-    end, 10)
+    require("colorizer").setup({
+      filetypes = { "css" },
+      user_default_options = {
+        css = true,
+        names = false,
+        mode = "background",
+        tailwind = false,
+        virtualtext = "████ Color",
+      },
+    })
   end,
 }

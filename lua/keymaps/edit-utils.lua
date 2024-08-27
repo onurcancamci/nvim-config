@@ -35,3 +35,8 @@ vim.keymap.set("v", '<leader>"', '<Esc>">a}<Esc>"<i{<Esc>', {})
 
 vim.keymap.set("i", "<S-Left>", "<ESC>v<Left>")
 vim.keymap.set("i", "<S-Right>", "<ESC>v<Right>")
+
+vim.keymap.set({ "i", "n" }, "<M-h>", "<Left>")
+vim.keymap.set({ "i", "n" }, "<M-j>", "<Down>")
+vim.keymap.set({ "i", "n" }, "<M-k>", "<Up>")
+vim.keymap.set({ "i", "n" }, "<M-l>", "<Right>")

@@ -1,48 +1,55 @@
 return {
-  { "mfussenegger/nvim-dap", enabled = false, config = function() end },
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-    enabled = false,
     config = function()
-      require("dapui").setup()
-    end,
-  },
-  {
-    "mxsdev/nvim-dap-vscode-js",
-    dependencies = { "mfussenegger/nvim-dap" },
-    enabled = false,
-    config = function()
-      require("dap-vscode-js").setup({
-        adapters = {
-          "pwa-node",
-          "pwa-chrome",
-          "pwa-msedge",
-          "node-terminal",
-          "pwa-extensionHost",
-        },
-      })
+      local dap = require("dap")
+      local dapui = require("dapui")
 
-      for _, language in ipairs({ "typescript", "javascript" }) do
-        require("dap").configurations[language] = {
-          {
-            {
-              type = "pwa-node",
-              request = "launch",
-              name = "Launch file",
-              program = "${file}",
-              cwd = "${workspaceFolder}",
-            },
-            {
-              type = "pwa-node",
-              request = "attach",
-              name = "Attach",
-              processId = require("dap.utils").pick_process,
-              cwd = "${workspaceFolder}",
-            },
-          },
-        }
+      dapui.setup()
+
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
       end
     end,
+  },
+  { "nvim-neotest/nvim-nio" },
+  {
+    "mfussenegger/nvim-dap",
+    config = function() end,
+    keys = require("keymaps.dap").keymaps,
+    dependencies = {
+      {
+        "microsoft/vscode-js-debug",
+        build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out",
+        version = "1.*",
+      },
+      {
+        "mxsdev/nvim-dap-vscode-js",
+        config = function()
+          -- port bun icin 6499
+          -- node icin 9229
+          require("dap-vscode-js").setup({
+            debugger_path = vim.fn.resolve(
+              vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"
+            ),
+            adapters = {
+              "chrome",
+              "node",
+              "pwa-node",
+              "pwa-chrome",
+              "pwa-msedge",
+              "pwa-extensionHost",
+              "node-terminal",
+            },
+          })
+        end,
+      },
+    },
   },
 }
