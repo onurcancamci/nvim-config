@@ -40,6 +40,7 @@ vim.opt.wrap = false
 vim.opt.colorcolumn = "80"
 vim.opt.scrolloff = 4
 vim.opt.cursorline = false
+vim.opt.fillchars = { eob = " " }
 
 -- Annoyance Fixes
 vim.opt.timeout = false

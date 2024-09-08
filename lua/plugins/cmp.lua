@@ -20,8 +20,8 @@ return {
 
       cmp.setup({
         sources = {
-          { name = "nvim_lsp" },
-          { "cmp-dbee" },
+          { name = "nvim_lsp", max_item_count = 100 },
+          -- { "cmp-dbee" },
         },
         snippet = {
           expand = function(args)
@@ -38,8 +38,8 @@ return {
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-k>"] = cmp.mapping({
+          -- ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-Space>"] = cmp.mapping({
             i = function()
               if cmp.visible() then
                 cmp.abort()

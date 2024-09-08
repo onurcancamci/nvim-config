@@ -1,8 +1,11 @@
+local env = require("env-config")
+
 return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
+    enabled = env.use_binary_extensions,
     config = function()
       local copilot = require("copilot")
       copilot.setup({
@@ -15,8 +18,8 @@ return {
             accept = "<C-y>",
             accept_word = false,
             accept_line = false,
-            next = "<C-i>",
-            -- prev = "<M-[>",
+            next = "<C-u>",
+            -- prev = "<C-S-i>",
             dismiss = "<C-c>",
           },
         },

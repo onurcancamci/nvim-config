@@ -14,7 +14,7 @@ return {
         callback = lspk.keymaps,
       })
 
-      lsp.tsserver.setup({
+      lsp.ts_ls.setup({
         capabilities = cap,
         on_init = function(client)
           if
@@ -27,7 +27,9 @@ return {
             -- client.server_capabilities.semanticTokensProvider = nil
             lspk.defineLspOverloads()
           end
+          local keys = {}
         end,
+        root_dir = require("lspconfig.util").root_pattern(".git"),
       })
       lsp.sqlls.setup({
         capabilities = cap,

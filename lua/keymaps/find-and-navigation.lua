@@ -46,5 +46,7 @@ vim.keymap.set("n", "<leader>ph", "<cmd>Telescope highlights<CR>")
 
 vim.keymap.set("n", "[q", "<cmd>cprev<CR>")
 vim.keymap.set("n", "]q", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<leader>cp", "<cmd>cprev<CR>")
+vim.keymap.set("n", "<leader>cn", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<leader>cc", "<cmd>cclose<CR>")
 vim.keymap.set("n", "<leader>co", "<cmd>copen<CR>")

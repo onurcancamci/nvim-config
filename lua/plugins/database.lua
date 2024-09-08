@@ -1,9 +1,12 @@
+local env = require("env-config")
+
 return {
   -- "tpope/vim-dadbod",
   -- "kristijanhusak/vim-dadbod-completion",
   -- "kristijanhusak/vim-dadbod-ui",
   {
     "kndndrj/nvim-dbee",
+    enabled = env.use_binary_extensions,
     dependencies = {
       "MunifTanjim/nui.nvim",
     },

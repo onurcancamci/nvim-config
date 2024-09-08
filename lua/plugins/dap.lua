@@ -1,6 +1,9 @@
+local env = require("env-config")
+
 return {
   {
     "rcarriga/nvim-dap-ui",
+    enabled = env.use_binary_extensions,
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -21,6 +24,7 @@ return {
   { "nvim-neotest/nvim-nio" },
   {
     "mfussenegger/nvim-dap",
+    enabled = env.use_binary_extensions,
     config = function() end,
     keys = require("keymaps.dap").keymaps,
     dependencies = {
@@ -48,6 +52,55 @@ return {
               "node-terminal",
             },
           })
+
+          require("dap").configurations.typescript = {
+            {
+              type = "pwa-node",
+              name = "Attach to Process",
+              request = "attach",
+              port = 9229,
+              -- sourceMaps = true,
+              -- restart = true,
+              skipFiles = { "<node_internals>/**" },
+              -- localRoot = "${workspaceFolder}/src",
+              -- remoteRoot = "${workspaceFolder}/dist/esm",
+              -- outFiles = { "${workspaceFolder}/dist/esm/**/*.js" },
+              cwd = "${workspaceFolder}",
+            },
+            -- {
+            --   type = "pwa-node",
+            --   request = "launch",
+            --   name = "Launch Node",
+            --   sourceMaps = true,
+            --   propgram = "${workspaceFolder}/src/Test/index.ts",
+            --   preLaunchTask = "npm: build",
+            --   outFiles = { "${workspaceFolder}/dist/esm/**/*.js" },
+            -- },
+            -- {
+            --   name = "Run dev:node",
+            --   type = "pwa-node",
+            --   runtimeArgs = { "run-script", "dev:node" },
+            --   runtimeExecutable = "pnpm",
+            --   skipFiles = { "<node_internals>/**" },
+            --   request = "launch",
+            -- },
+            -- {
+            --   type = "pwa-node",
+            --   request = "attach",
+            --   name = "Pick Process",
+            --   processId = require("dap.utils").pick_process,
+            --   cwd = vim.fn.getcwd(),
+            --   sourceMaps = true,
+            -- },
+            -- {
+            --   type = "pwa-node",
+            --   request = "launch",
+            --   name = "Launch file",
+            --   program = "${file}",
+            --   cwd = vim.fn.getcwd(),
+            --   sourceMaps = true,
+            -- },
+          }
         end,
       },
     },

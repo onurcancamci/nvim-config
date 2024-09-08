@@ -53,6 +53,12 @@ M.keymaps = {
       require("dap").continue()
     end,
   },
+  {
+    "<leader>dc",
+    function()
+      require("dap").continue()
+    end,
+  },
 }
 
 return M

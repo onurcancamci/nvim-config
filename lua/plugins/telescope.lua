@@ -64,10 +64,10 @@ return {
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
-          media_files = {
-            filetypes = { "png", "webp", "jpg", "jpeg", "svg" },
-            find_cmd = "rg",
-          },
+          -- media_files = {
+          --   filetypes = { "png", "webp", "jpg", "jpeg", "svg" },
+          --   find_cmd = "rg",
+          -- },
         },
         defaults = {
           file_ignore_patterns = {
@@ -79,7 +79,7 @@ return {
             "dist",
             "**/*.js.map",
             "**/*.ts.map",
-            "bin/cli",
+            -- "bin/cli",
             ".git/",
           },
           vimgrep_arguments = {
@@ -122,7 +122,7 @@ return {
                   print("Removed")
                 end
               end,
-              ["<C-v>"] = require("telescope.actions").send_selected_to_qflist,
+              ["<C-q>"] = require("telescope.actions").smart_send_to_qflist,
             },
 
             n = {
@@ -149,12 +149,14 @@ return {
                   print("Removed")
                 end
               end,
-              ["<C-v>"] = require("telescope.actions").send_selected_to_qflist,
+              ["<C-q>"] = require("telescope.actions").send_selected_to_qflist,
             },
           },
         },
       })
-      require("telescope").load_extension("fzf")
+      if env.use_binary_extensions then
+        require("telescope").load_extension("fzf")
+      end
       require("telescope").load_extension("dir")
       -- require("telescope").load_extension("media_files")
     end,
@@ -162,6 +164,7 @@ return {
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = bcmd,
+    enabled = env.use_binary_extensions,
   },
   {
     "princejoogie/dir-telescope.nvim",
